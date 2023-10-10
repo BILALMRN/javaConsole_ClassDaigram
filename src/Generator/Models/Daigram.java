@@ -6,7 +6,19 @@ import java.util.List;
 public class Daigram {
     private static int id=1;
     private String diagramsName;
+    private List<Relationship> relationships;
     private List<Class> daigram;
+    
+        // @startuml
+        // 1- add relation
+
+        // Object <|-- ArrayList
+        // 2- add feild
+        // Object : equals()
+        // ArrayList : Object[] elementData
+        // ArrayList : size()
+
+        // @enduml
 
     public String diagramsDescription;
     public String diagramsAuthor;
@@ -39,6 +51,17 @@ public class Daigram {
         this.diagramsName = diagramsName;
         else throw 
                 new IllegalArgumentException("daigram is null");
+    }
+    public List<Relationship> getRelationships() {
+        return relationships;
+    }
+
+    public void setRelationships(List<Relationship> relationships) {
+        if(relationships == null || relationships.isEmpty()){
+            throw 
+                new IllegalArgumentException("className is null");
+        }
+        this.relationships = relationships;
     }
     public List<Class> getDaigram() {
         return daigram;

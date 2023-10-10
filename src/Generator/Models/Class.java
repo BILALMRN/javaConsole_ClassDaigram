@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Class {
     private String className;
-    private List<Relationship> relationships;
 
     public List<String> attributes;
     public List<String> methods;
@@ -33,19 +32,7 @@ public class Class {
         }
         this.className = className;
     }
-
-    public List<Relationship> getRelationships() {
-        return relationships;
-    }
-
-    public void setRelationships(List<Relationship> relationships) {
-        if(relationships == null || relationships.isEmpty()){
-            throw 
-                new IllegalArgumentException("className is null");
-        }
-        this.relationships = relationships;
-    }
-
+    
     //#endregion
     
 }

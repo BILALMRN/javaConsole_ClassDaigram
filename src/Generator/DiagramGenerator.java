@@ -6,9 +6,11 @@ import Generator.Models.Diagrams;
 public class DiagramGenerator {
     private String path;
 
+
+    // doc for utilisation a lib plantuml : https://plantuml.com/class-diagram
     public void generateDiagram(String path,Diagrams diagrams) {
         if(validData(path,diagrams)){
-
+            
         }
         
         

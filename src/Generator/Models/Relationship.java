@@ -1,7 +1,8 @@
 package Generator.Models;
 
 public class Relationship {
-    private Class targetClass;
+    private String childClass;
+    private String parentClass;
     private String relationshipType;
     private String parentMultiplicit;
     private String childMultiplicit;
@@ -9,27 +10,39 @@ public class Relationship {
     //#region constractor
     public Relationship() {
     }
-
-     public Relationship(Class targetClass, String relationshipType, String parentMultiplicit, String childMultiplicit) {
-        this.targetClass = targetClass;
+    public Relationship(String childClass, String parentClass, String relationshipType, String parentMultiplicit,
+            String childMultiplicit) {
+        this.childClass = childClass;
+        this.parentClass = parentClass;
         this.relationshipType = relationshipType;
         this.parentMultiplicit = parentMultiplicit;
         this.childMultiplicit = childMultiplicit;
     }
+
     
     //#endregion
 
     //#region getter and setter
-    public Class getTargetClass() {
-        return targetClass;
+
+    public String getChildClass() {
+        return childClass;
     }
 
-    public void setTargetClass(Class targetClass) {
-        if(targetClass == null)
-        throw new IllegalArgumentException("className is null");
-        this.targetClass = targetClass;
+
+    public void setChildClass(String childClass) {
+        this.childClass = childClass;
     }
 
+
+    public String getParentClass() {
+        return parentClass;
+    }
+
+
+    public void setParentClass(String parentClass) {
+        this.parentClass = parentClass;
+    }
+    
     public String getRelationshipType() {
         return relationshipType;
     }
@@ -54,5 +67,8 @@ public class Relationship {
         this.childMultiplicit = childMultiplicit;
     }
     //#endregion
+
+
+    
     
 }
