@@ -1,16 +1,18 @@
 package Generator.Models;
 
+import Generator.Enum.RelationType;
+
 public class Relationship {
-    private String childClass;
-    private String parentClass;
-    private String relationshipType;
-    private String parentMultiplicit;
-    private String childMultiplicit;
+    private String childClass = "";
+    private String parentClass = "";
+    private RelationType relationshipType;
+    private String parentMultiplicit = "";
+    private String childMultiplicit = "";
 
     //#region constractor
     public Relationship() {
     }
-    public Relationship(String childClass, String parentClass, String relationshipType, String parentMultiplicit,
+    public Relationship(String childClass, String parentClass, RelationType relationshipType, String parentMultiplicit,
             String childMultiplicit) {
         this.childClass = childClass;
         this.parentClass = parentClass;
@@ -43,11 +45,11 @@ public class Relationship {
         this.parentClass = parentClass;
     }
     
-    public String getRelationshipType() {
+    public RelationType getRelationshipType() {
         return relationshipType;
     }
 
-    public void setRelationshipType(String relationshipType) {
+    public void setRelationshipType(RelationType relationshipType) {
         this.relationshipType = relationshipType;
     }
 

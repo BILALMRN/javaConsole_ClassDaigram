@@ -1,6 +1,8 @@
 package Generator;
 
+import Generator.Helper.GenerateUML;
 import Generator.Models.Diagrams;
+import net.sourceforge.plantuml.core.Diagram;
 
 
 public class DiagramGenerator {
@@ -10,7 +12,12 @@ public class DiagramGenerator {
     // doc for utilisation a lib plantuml : https://plantuml.com/class-diagram
     public void generateDiagram(String path,Diagrams diagrams) {
         if(validData(path,diagrams)){
-            
+            String uml;
+            for (Diagram diagram : diagrams) {
+                
+                GenerateUML.generateUmlImage(diagram,path);
+
+            }
         }
         
         

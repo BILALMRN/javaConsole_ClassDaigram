@@ -2,7 +2,7 @@ package Generator.Models;
 
 import java.util.List;
 
-public class Class {
+public class Classe {
     private String className;
 
     public List<String> attributes;
@@ -10,10 +10,10 @@ public class Class {
     
     
     //#region constractor
-    public Class() {
+    public Classe() {
     }
 
-    public Class(String className, List<String> attributes, List<String> methods) {
+    public Classe(String className, List<String> attributes, List<String> methods) {
         this.attributes = attributes;
         this.methods = methods;
         setClassName(className);

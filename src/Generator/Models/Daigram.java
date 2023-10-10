@@ -7,18 +7,8 @@ public class Daigram {
     private static int id=1;
     private String diagramsName;
     private List<Relationship> relationships;
-    private List<Class> daigram;
+    private List<Classe> daigram;
     
-        // @startuml
-        // 1- add relation
-
-        // Object <|-- ArrayList
-        // 2- add feild
-        // Object : equals()
-        // ArrayList : Object[] elementData
-        // ArrayList : size()
-
-        // @enduml
 
     public String diagramsDescription;
     public String diagramsAuthor;
@@ -26,15 +16,15 @@ public class Daigram {
 
     //#region constractor
     public Daigram() {
-        this.daigram = new ArrayList<Class>();
+        this.daigram = new ArrayList<Classe>();
         this.id+=1;
     }
     
-    public Daigram(String diagramsName, String diagramsDescription, String diagramsAuthor, List<Class> daigram) {
+    public Daigram(String diagramsName, String diagramsDescription, String diagramsAuthor, List<Classe> daigram) {
         this.diagramsDescription = diagramsDescription;
         this.diagramsAuthor = diagramsAuthor;
         setDiagramsName(diagramsName);
-        this.daigram = new ArrayList<Class>();
+        this.daigram = new ArrayList<Classe>();
         this.id+=1;
     }
     //#endregion
@@ -52,21 +42,21 @@ public class Daigram {
         else throw 
                 new IllegalArgumentException("daigram is null");
     }
-    public List<Relationship> getRelationships() {
+    public List<Relationship> getListRelationships() {
         return relationships;
     }
 
-    public void setRelationships(List<Relationship> relationships) {
+    public void setListRelationships(List<Relationship> relationships) {
         if(relationships == null || relationships.isEmpty()){
             throw 
                 new IllegalArgumentException("className is null");
         }
         this.relationships = relationships;
     }
-    public List<Class> getDaigram() {
+    public List<Classe> getListClass() {
         return daigram;
     }
-    public void setDaigram(List<Class> daigram) {
+    public void setListClass(List<Classe> daigram) {
         if(daigram != null)
         this.daigram = daigram;
         else throw 
@@ -75,18 +65,18 @@ public class Daigram {
     
     //#endregion
 
-    public void editClass(Class c, int index) {
+    public void editClass(Classe c, int index) {
         if(c != null && index >= 0 && index < this.daigram.size())
         this.daigram.set(index, c);
         else throw 
                 new IllegalArgumentException("class is null or index not exist");
     }
-    public void addClass(Class c) {
+    public void addClass(Classe c) {
         if(c != null ){
             this.daigram.add(c);
         }
     }
-    public void addClassIfNotExist(Class c) {
+    public void addClassIfNotExist(Classe c) {
         if(c != null ){
             if(this.daigram.contains(c)) 
                 this.daigram.add(c);
@@ -96,7 +86,7 @@ public class Daigram {
         else throw 
                 new IllegalArgumentException("daigram is null");
     }
-    public void removeClass(Class c) {
+    public void removeClass(Classe c) {
 
         if(c != null){
             this.daigram.remove(c);
