@@ -6,6 +6,10 @@ public class Diagrams{
     private String nameProject;
     private List<Daigram> diagramList;
 
+
+    public Diagrams(){
+
+    }
     public Diagrams(String nameProject, List<Daigram> diagramList) {
 
     }
@@ -23,7 +27,7 @@ public class Diagrams{
         this.nameProject = nameProject;
     }
 
-    public List<Class> getDiagramList() {
+    public List<Daigram> getDiagramList() {
         return diagramList;
     }
 
