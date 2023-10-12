@@ -28,12 +28,12 @@ public class Main{
          daigram.setDiagramsName("dagram de ecomerce");
 
          // creat class
-         
+
         Classe class1 = new Classe();
 
-         class1.setClassName("class1");
-         
-         // add attributes 
+        class1.setClassName("class1");
+
+        // add attributes
         class1.attributes.add("id : int ");
         class1.attributes.add("sold : double ");
         class1.attributes.add("name : string ");
@@ -48,9 +48,9 @@ public class Main{
 
         Classe class2 = new Classe();
 
-         class2.setClassName("class2");
-         
-         // add attributes 
+        class2.setClassName("class2");
+
+        // add attributes
         class1.attributes.add("id : int ");
         class1.attributes.add("sold : double ");
         class1.attributes.add("name : string ");
@@ -67,7 +67,7 @@ public class Main{
 
         class3.setClassName("class3");
 
-        // add attributes 
+        // add attributes
         class1.attributes.add("id : int ");
         class1.attributes.add("sold : double ");
         class1.attributes.add("name : string ");
@@ -79,7 +79,7 @@ public class Main{
         class1.methods.add("getSold()");
 
         //relationshep
-        
+
         Relationship relationship = new Relationship();
 
         relationship.setParentClass(class1.getClassName());
@@ -98,15 +98,15 @@ public class Main{
         project.addDaigram(daigram);
         project.addDaigramIfNotExist(daigram);
 
-        DiagramGenerator generator = new DiagramGenerator();
-        try {
-            generator.generateDiagrams("/home/bilal/Desktop",project);
-        } 
-        catch 
-        (IOException e) {
+        //DiagramGenerator generator = new DiagramGenerator();
+        //try {
+           // generator.generateDiagrams("/home/bilal/Desktop",project);
+        //}
+        //catch
+        //(IOException e) {
 
-            e.printStackTrace();
-        }
+            //e.printStackTrace();
+        //}
         
         
     }

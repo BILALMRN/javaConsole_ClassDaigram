@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Classe {
@@ -11,6 +12,8 @@ public class Classe {
     
     //#region constractor
     public Classe() {
+        this.attributes = new ArrayList<>();
+        this.methods =  new ArrayList<>();
     }
 
     public Classe(String className, List<String> attributes, List<String> methods) {

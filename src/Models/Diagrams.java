@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Diagrams{
@@ -8,7 +9,7 @@ public class Diagrams{
 
 
     public Diagrams(){
-
+        this.diagramList = new ArrayList<>();
     }
     public Diagrams(String nameProject, List<Daigram> diagramList) {
 

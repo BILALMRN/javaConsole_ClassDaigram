@@ -17,6 +17,7 @@ public class Daigram {
     //#region constractor
     public Daigram() {
         this.daigram = new ArrayList<Classe>();
+        this.relationships = new ArrayList<Relationship>();
         this.id+=1;
     }
     

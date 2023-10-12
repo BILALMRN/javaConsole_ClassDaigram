@@ -11,6 +11,7 @@ public class Relationship {
 
     //#region constractor
     public Relationship() {
+        
     }
     public Relationship(String childClass, String parentClass, RelationType relationshipType, String parentMultiplicit,
             String childMultiplicit) {
