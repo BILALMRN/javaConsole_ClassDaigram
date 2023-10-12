@@ -54,19 +54,19 @@ public class GenerateUML {
         return uml.toString();
     }
 
-    public static void generateUmlImage(Daigram diagram, String outputImagePath) throws IOException {
-        // Create a PlantUML source reader
+    public static void generateUmlImage(Daigram diagram, String outputPath) throws IOException {
+        
+        {
+            SaveData.saveUmlClassDaigramAsJson(diagram,outputPath);   
+       } 
+       
+
         String plantUmlText = generateUmlString(diagram);
-        // add save file
-
-
-
-        ///
         // Create a SourceStringReader with the PlantUML text
         SourceStringReader reader = new SourceStringReader(plantUmlText);
 
         // Create a FileOutputStream for the output image
-        File outputFile = new File(outputImagePath);
+        File outputFile = new File(outputPath);
         FileOutputStream outputStream = new FileOutputStream(outputFile);
 
         try {
