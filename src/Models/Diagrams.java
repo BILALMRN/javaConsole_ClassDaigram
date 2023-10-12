@@ -1,4 +1,4 @@
-package Generator.Models;
+package Models;
 
 import java.util.List;
 
@@ -37,12 +37,12 @@ public class Diagrams{
         this.diagramList = diagramList;
     }
 
-    public void addClass(Daigram c) {
+    public void addDaigram(Daigram c) {
         if(c != null ){
             this.diagramList.add(c);
         }
     }
-    public void addClassIfNotExist(Daigram c) {
+    public void addDaigramIfNotExist(Daigram c) {
         if(c != null ){
             if(this.diagramList.contains(c)) 
                 this.diagramList.add(c);
@@ -52,7 +52,7 @@ public class Diagrams{
         else throw 
                 new IllegalArgumentException("diagramList is null");
     }
-    public void removeClass(Daigram c) {
+    public void removeDaigram(Daigram c) {
 
         if(c != null){
             this.diagramList.remove(c);
@@ -62,7 +62,7 @@ public class Diagrams{
         else throw 
                 new IllegalArgumentException("diagramList is null");
     }
-    public void removeAllClass() {
+    public void removeAllDaigram() {
         this.diagramList.clear();
     }
 

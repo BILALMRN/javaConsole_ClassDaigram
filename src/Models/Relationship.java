@@ -1,6 +1,6 @@
-package Generator.Models;
+package Models;
 
-import Generator.Enum.RelationType;
+import Models.Enum.RelationType;
 
 public class Relationship {
     private String childClass = "";

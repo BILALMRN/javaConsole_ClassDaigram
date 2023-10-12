@@ -1,4 +1,4 @@
-package Generator.Models;
+package Models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,6 +98,41 @@ public class Daigram {
     }
     public void removeAllClass() {
         this.daigram.clear();
+    }
+
+    public void editRelationship(Relationship c, int index) {
+        if(c != null && index >= 0 && index < this.relationships.size())
+        this.relationships.set(index, c);
+        else throw 
+                new IllegalArgumentException("class is null or index not exist");
+    }
+    public void addRelationship(Relationship c) {
+        if(c != null ){
+            this.relationships.add(c);
+        }
+    }
+    public void addRelationshipIfNotExist(Relationship c) {
+        if(c != null ){
+            if(this.relationships.contains(c)) 
+                this.relationships.add(c);
+        }
+        
+
+        else throw 
+                new IllegalArgumentException("daigram is null");
+    }
+    public void removeRelationship(Classe c) {
+
+        if(c != null){
+            this.relationships.remove(c);
+        }
+
+
+        else throw 
+                new IllegalArgumentException("daigram is null");
+    }
+    public void removeAllRelationship() {
+        this.relationships.clear();
     }
 
 }

@@ -1,4 +1,4 @@
-package Generator.Enum;
+package Models.Enum;
 
 public enum ModifierType {
     PRIVATE("-"),

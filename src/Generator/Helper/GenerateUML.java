@@ -1,14 +1,14 @@
 package Generator.Helper;
 
-import Generator.Models.Daigram;
-import Generator.Models.Relationship;
 import net.sourceforge.plantuml.SourceStringReader;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import Generator.Models.Classe;
+import Models.Classe;
+import Models.Daigram;
+import Models.Relationship;
 
 public class GenerateUML {
     private static String generateUmlString(Daigram diagram) {
@@ -55,29 +55,21 @@ public class GenerateUML {
     }
 
     public static void generateUmlImage(Daigram diagram, String outputPath) throws IOException {
-        
-        {
-            SaveData.saveUmlClassDaigramAsJson(diagram,outputPath);   
-       } 
-       
-
         String plantUmlText = generateUmlString(diagram);
-        // Create a SourceStringReader with the PlantUML text
         SourceStringReader reader = new SourceStringReader(plantUmlText);
 
-        // Create a FileOutputStream for the output image
         File outputFile = new File(outputPath);
         FileOutputStream outputStream = new FileOutputStream(outputFile);
 
         try {
-            // Generate the image and write it to the output stream
             reader.outputImage(outputStream);
+            System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
         }
          finally {
             // Close the output stream
             outputStream.close();
         }
 
-        //System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
+        
     }
 }

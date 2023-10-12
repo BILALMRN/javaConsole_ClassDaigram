@@ -3,8 +3,8 @@ package Generator;
 import java.io.IOException;
 
 import Generator.Helper.GenerateUML;
-import Generator.Models.Daigram;
-import Generator.Models.Diagrams;
+import Models.Daigram;
+import Models.Diagrams;
 
 public class DiagramGenerator {
     private String path;
@@ -16,7 +16,7 @@ public class DiagramGenerator {
      * @param diagrams
      * @throws IOException
      */
-    public void generateDiagram(String path,Diagrams diagrams) throws IOException {
+    public void generateDiagrams(String path,Diagrams diagrams) throws IOException {
         if(validData(path,diagrams)){
              for (Daigram diagram : diagrams.getDiagramList())
              {

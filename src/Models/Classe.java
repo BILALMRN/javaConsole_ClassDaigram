@@ -1,4 +1,4 @@
-package Generator.Models;
+package Models;
 
 import java.util.List;
 
