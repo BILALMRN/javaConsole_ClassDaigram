@@ -1,6 +1,7 @@
 package Generator.Helper;
 
 import Generator.Models.Daigram;
+import Generator.Models.Relationship;
 import net.sourceforge.plantuml.SourceStringReader;
 
 import java.io.File;
@@ -27,18 +28,18 @@ public class GenerateUML {
 
         uml.append("@startuml\n");
         
-        for (var classe : diagram.getListClass()) {
+        for (Classe classe : diagram.getListClass()) {
             uml.append(
                 "class " + classe.getClassName() +" {\n");
-            for (var feild : classe.attributes){
+            for (String feild : classe.attributes){
                 uml.append(" "+ feild +"\n");
             }
-            for (var method : classe.methods) {
+            for (String method : classe.methods) {
                 uml.append(" "+ method +"\n");
             }
             uml.append(" } \n");
         }
-        for (var relationship : diagram.getListRelationships()) {
+        for (Relationship relationship : diagram.getListRelationships()) {
             uml.append(
                 relationship.getParentClass()        +" "+ 
             relationship.getChildMultiplicit()       +" "+
@@ -50,21 +51,33 @@ public class GenerateUML {
         }
 
         uml.append("@enduml");
-        
         return uml.toString();
     }
 
     public static void generateUmlImage(Daigram diagram, String outputImagePath) throws IOException {
         // Create a PlantUML source reader
         String plantUmlText = generateUmlString(diagram);
+        // add save file
+
+
+
+        ///
+        // Create a SourceStringReader with the PlantUML text
         SourceStringReader reader = new SourceStringReader(plantUmlText);
 
-        // Write the generated image to the specified output file
+        // Create a FileOutputStream for the output image
         File outputFile = new File(outputImagePath);
         FileOutputStream outputStream = new FileOutputStream(outputFile);
-        reader.generateImage(outputStream, null);
-        outputStream.close();
 
-        System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
+        try {
+            // Generate the image and write it to the output stream
+            reader.outputImage(outputStream);
+        }
+         finally {
+            // Close the output stream
+            outputStream.close();
+        }
+
+        //System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
     }
 }

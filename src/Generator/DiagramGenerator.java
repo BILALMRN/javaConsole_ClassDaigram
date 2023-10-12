@@ -1,22 +1,26 @@
 package Generator;
 
-import Generator.Helper.GenerateUML;
-import Generator.Models.Diagrams;
-import net.sourceforge.plantuml.core.Diagram;
+import java.io.IOException;
 
+import Generator.Helper.GenerateUML;
+import Generator.Models.Daigram;
+import Generator.Models.Diagrams;
 
 public class DiagramGenerator {
     private String path;
 
 
     // doc for utilisation a lib plantuml : https://plantuml.com/class-diagram
-    public void generateDiagram(String path,Diagrams diagrams) {
+    /**
+     * @param path
+     * @param diagrams
+     * @throws IOException
+     */
+    public void generateDiagram(String path,Diagrams diagrams) throws IOException {
         if(validData(path,diagrams)){
-            String uml;
-            for (Diagram diagram : diagrams) {
-                
-                GenerateUML.generateUmlImage(diagram,path);
-
+             for (Daigram diagram : diagrams.getDiagramList())
+             {
+                 GenerateUML.generateUmlImage(diagram,path);
             }
         }
         
