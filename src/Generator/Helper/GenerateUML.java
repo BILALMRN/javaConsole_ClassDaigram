@@ -39,38 +39,28 @@ public class GenerateUML {
             }
             uml.append(" } \n");
         }
-        for (Relationship relationship : diagram.getListRelationships()) {
-            // this text in same (1) line
-            uml.append(
-                        relationship.getParentClass()        
-                +" \""+ relationship.getChildMultiplicit()   +"\" "+
-                        relationship.getRelationshipType()     
-                +" \""+ relationship.getParentMultiplicit()  +"\" "+
-                        relationship.getChildClass()         +" \n"
-             );
-        }
+        // for (Relationship relationship : diagram.getListRelationships()) {
+        //     // this text in same (1) line
+        //     uml.append(
+        //                 relationship.getParentClass()        
+        //         +" \""+ relationship.getChildMultiplicit()   +"\" "+
+        //                 relationship.getRelationshipType()     
+        //         +" \""+ relationship.getParentMultiplicit()  +"\" "+
+        //                 relationship.getChildClass()         +" \n"
+        //      );
+        // }
 
         uml.append("@enduml");
         return uml.toString();
     }
 
-    public static void generateUmlImage(Daigram diagram, String pathString) throws IOException {
+    public static void generateUmlImage(Daigram diagram, String path) throws IOException {
         String plantUmlText = generateUmlString(diagram);//generation the style image and contain
-        String outputDirectory = pathString + diagram.getDiagramsName();
-        if(creatFolderIfNotExist(outputDirectory)){
-            generateImage(outputDirectory, plantUmlText);
-        }       
+        String fullPathImage = path + File.separator + diagram.getDiagramsName()+ ".png";
+        generateImage(fullPathImage, plantUmlText);
+              
     }
 
-    private static boolean creatFolderIfNotExist(String folderPath){
-        File folder = new File(folderPath);
-        boolean isCreat = folder.exists();
-        if(!isCreat){
-            isCreat = folder.mkdir();
-        }
-        return isCreat;
-
-    }
 
 
     private static void generateImage(String outputPath,String plantUmlText) throws IOException {

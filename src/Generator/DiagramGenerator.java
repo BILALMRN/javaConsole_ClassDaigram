@@ -1,5 +1,6 @@
 package Generator;
 
+import java.io.File;
 import java.io.IOException;
 
 import Generator.Helper.GenerateUML;
@@ -17,7 +18,7 @@ public class DiagramGenerator {
      * @throws IOException
      */
     public void generateDiagrams(String path,Diagrams diagrams) throws IOException {
-        if(validData(path,diagrams)){
+        if(validData(path,diagrams) && createdFolderIfNotExist(diagrams.getNameProject()) ){
              for (Daigram diagram : diagrams.getDiagramList())
              {
                  GenerateUML.generateUmlImage(diagram,path);
@@ -43,6 +44,14 @@ public class DiagramGenerator {
         return path;
     }
 
-    
+    private boolean createdFolderIfNotExist(String folderPath){
+        File folder = new File(folderPath);
+        boolean isCreat = folder.exists();
+        if(!isCreat){
+            isCreat = folder.mkdir();
+        }
+        return isCreat;
+
+    }
     
 }

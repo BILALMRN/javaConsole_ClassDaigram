@@ -101,6 +101,7 @@ public class Main{
         DiagramGenerator generator = new DiagramGenerator();
         try {
            generator.generateDiagrams("/home/bilal/Desktop",project);
+            System.out.println("tt");
         }
         catch
         (IOException e) {
