@@ -51,15 +51,15 @@ public class Main{
         class2.setClassName("class2");
 
         // add attributes
-        class1.attributes.add("id : int ");
-        class1.attributes.add("sold : double ");
-        class1.attributes.add("name : string ");
+        class2.attributes.add("id : int ");
+        class2.attributes.add("sold : double ");
+        class2.attributes.add("name : string ");
 
         // add method
-        class1.methods.add("getId()");
-        class1.methods.add("buy()");
-        class1.methods.add("sell()");
-        class1.methods.add("getSold()");
+        class2.methods.add("getId()");
+        class2.methods.add("buy()");
+        class2.methods.add("sell()");
+        class2.methods.add("getSold()");
 
         //****
 
@@ -68,15 +68,15 @@ public class Main{
         class3.setClassName("class3");
 
         // add attributes
-        class1.attributes.add("id : int ");
-        class1.attributes.add("sold : double ");
-        class1.attributes.add("name : string ");
+        class3.attributes.add("id : int ");
+        class3.attributes.add("sold : double ");
+        class3.attributes.add("name : string ");
 
         // add method
-        class1.methods.add("getId()");
-        class1.methods.add("buy()");
-        class1.methods.add("sell()");
-        class1.methods.add("getSold()");
+        class3.methods.add("getId()");
+        class3.methods.add("buy()");
+        class3.methods.add("sell()");
+        class3.methods.add("getSold()");
 
         //relationshep
 
