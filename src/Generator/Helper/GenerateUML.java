@@ -54,20 +54,26 @@ public class GenerateUML {
         return uml.toString();
     }
 
-    public static void generateUmlImage(Daigram diagram, String outputPath) throws IOException {
+    public static void generateUmlImage(Daigram diagram, String outputDirectory) throws IOException {
         String plantUmlText = generateUmlString(diagram);
         SourceStringReader reader = new SourceStringReader(plantUmlText);
 
+        String outputPath = outputDirectory + File.separator + "uml_image_" + diagram.getDiagramsName() + ".png"; // Change the file format as needed
         File outputFile = new File(outputPath);
         FileOutputStream outputStream = new FileOutputStream(outputFile);
-
         try {
             reader.outputImage(outputStream);
             System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
-        }
-         finally {
-            // Close the output stream
-            outputStream.close();
+        } catch (IOException e) {
+            System.err.println("Error generating UML image: " + e.getMessage());
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    System.err.println("Error closing output stream: " + e.getMessage());
+                }
+            }
         }
 
         

@@ -98,15 +98,15 @@ public class Main{
         project.addDaigram(daigram);
         project.addDaigramIfNotExist(daigram);
 
-        //DiagramGenerator generator = new DiagramGenerator();
-        //try {
-           // generator.generateDiagrams("/home/bilal/Desktop",project);
-        //}
-        //catch
-        //(IOException e) {
+        DiagramGenerator generator = new DiagramGenerator();
+        try {
+           generator.generateDiagrams("/home/bilal/Desktop",project);
+        }
+        catch
+        (IOException e) {
 
-            //e.printStackTrace();
-        //}
+            e.printStackTrace();
+        }
         
         
     }

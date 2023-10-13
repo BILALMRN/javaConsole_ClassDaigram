@@ -3,6 +3,7 @@
 *.iml
 out/
 .idea/
+*.json
 
 # Compiled class file
 *.class
