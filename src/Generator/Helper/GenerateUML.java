@@ -30,12 +30,12 @@ public class GenerateUML {
         
         for (Classe classe : diagram.getListClass()) {
             uml.append(
-                "class " + classe.getClassName() +" {\n");
+                "Class " + classe.getClassName() +" { \n");
             for (String feild : classe.attributes){
-                uml.append(" "+ feild +"\n");
+                uml.append(" "+ feild +" \n");
             }
             for (String method : classe.methods) {
-                uml.append(" "+ method +"\n");
+                uml.append(" "+ method +" \n");
             }
             uml.append(" } \n");
         }
@@ -44,7 +44,7 @@ public class GenerateUML {
         //     uml.append(
         //                 relationship.getParentClass()        
         //         +" \""+ relationship.getChildMultiplicit()   +"\" "+
-        //                 relationship.getRelationshipType()     
+        //                 relationship.getRelationshipType().getSymbol()     
         //         +" \""+ relationship.getParentMultiplicit()  +"\" "+
         //                 relationship.getChildClass()         +" \n"
         //      );
