@@ -40,13 +40,13 @@ public class GenerateUML {
             uml.append(" } \n");
         }
         for (Relationship relationship : diagram.getListRelationships()) {
+            // this text in same (1) line
             uml.append(
-                relationship.getParentClass()        +" "+ 
-            relationship.getChildMultiplicit()       +" "+
-            relationship.getRelationshipType()       + " " +
-            relationship.getParentMultiplicit()      +" "+
-             relationship.getChildClass()
-             +" \n"
+                        relationship.getParentClass()        
+                +" \""+ relationship.getChildMultiplicit()   +"\" "+
+                        relationship.getRelationshipType()     
+                +" \""+ relationship.getParentMultiplicit()  +"\" "+
+                        relationship.getChildClass()         +" \n"
              );
         }
 
