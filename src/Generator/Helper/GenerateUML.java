@@ -54,13 +54,30 @@ public class GenerateUML {
         return uml.toString();
     }
 
-    public static void generateUmlImage(Daigram diagram, String outputDirectory) throws IOException {
-        String plantUmlText = generateUmlString(diagram);
-        SourceStringReader reader = new SourceStringReader(plantUmlText);
+    public static void generateUmlImage(Daigram diagram, String pathString) throws IOException {
+        String plantUmlText = generateUmlString(diagram);//generation the style image and contain
+        String outputDirectory = pathString + diagram.getDiagramsName();
+        if(creatFolderIfNotExist(outputDirectory)){
+            generateImage(outputDirectory, plantUmlText);
+        }       
+    }
 
-        String outputPath = outputDirectory + File.separator + "uml_image_" + diagram.getDiagramsName() + ".png"; // Change the file format as needed
+    private static boolean creatFolderIfNotExist(String folderPath){
+        File folder = new File(folderPath);
+        boolean isCreat = folder.exists();
+        if(!isCreat){
+            isCreat = folder.mkdir();
+        }
+        return isCreat;
+
+    }
+
+
+    private static void generateImage(String outputPath,String plantUmlText) throws IOException {
         File outputFile = new File(outputPath);
         FileOutputStream outputStream = new FileOutputStream(outputFile);
+
+        SourceStringReader reader = new SourceStringReader(plantUmlText);
         try {
             reader.outputImage(outputStream);
             System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
@@ -76,6 +93,5 @@ public class GenerateUML {
             }
         }
 
-        
     }
 }
