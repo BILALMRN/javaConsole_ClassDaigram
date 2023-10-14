@@ -45,7 +45,7 @@ public class Diagrams{
     }
     public void addDaigramIfNotExist(Daigram c) {
         if(c != null ){
-            if(this.diagramList.contains(c)) 
+            if(!this.diagramList.contains(c)) 
                 this.diagramList.add(c);
         }
         

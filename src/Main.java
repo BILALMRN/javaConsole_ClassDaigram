@@ -88,14 +88,34 @@ public class Main{
         relationship.setChildMultiplicit("1..*");
         relationship.setRelationshipType(RelationType.GENERALIZATION);
 
+        Relationship relationship1 = new Relationship();
+
+        relationship1.setParentClass(class2.getClassName());
+        relationship1.setChildClass(class3.getClassName());
+        relationship1.setParentMultiplicit("1..0");
+        relationship1.setChildMultiplicit("1..*");
+        relationship1.setRelationshipType(RelationType.GENERALIZATION);
+
+        Relationship relationship2 = new Relationship();
+
+        relationship2.setParentClass(class3.getClassName());
+        relationship2.setChildClass(class1.getClassName());
+        relationship2.setParentMultiplicit("0..1");
+        relationship2.setChildMultiplicit("1..*");
+        relationship2.setRelationshipType(RelationType.GENERALIZATION);
+
+
+        ////* */
+
         daigram.addClass(class1);
         daigram.addClass(class2);
         daigram.addClassIfNotExist(class3);
         daigram.addRelationship(relationship);
-        daigram.addRelationshipIfNotExist(relationship);
+        daigram.addRelationshipIfNotExist(relationship1);
+        daigram.addRelationshipIfNotExist(relationship2);
 
         project.addDaigram(daigram);
-        project.addDaigram(daigram);
+        project.addDaigramIfNotExist(daigram);
         project.addDaigramIfNotExist(daigram);
 
         DiagramGenerator generator = new DiagramGenerator();

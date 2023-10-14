@@ -1,7 +1,10 @@
 package Generator;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import Generator.Helper.GenerateUML;
 import Models.Daigram;
@@ -18,12 +21,15 @@ public class DiagramGenerator {
      * @throws IOException
      */
     public void generateDiagrams(String path,Diagrams diagrams) throws IOException {
-        if(validData(path,diagrams) && createdFolderIfNotExist(diagrams.getNameProject()) ){
+         if( isDotCommandAvailable() && /* Check if the executable file Graphviz (dot) exists: to draw */
+             validData(path,diagrams) &&
+             createdFolderIfNotExist(diagrams.getNameProject()) 
+            ){
              for (Daigram diagram : diagrams.getDiagramList())
              {
                  GenerateUML.generateUmlImage(diagram,path);
+             }
             }
-        }
         
         
     }
@@ -44,6 +50,11 @@ public class DiagramGenerator {
         return path;
     }
 
+    /**
+     * @return true if the directory was created or is Exist
+     * @param folderPath
+     * 
+     */
     private boolean createdFolderIfNotExist(String folderPath){
         File folder = new File(folderPath);
         boolean isCreat = folder.exists();
@@ -53,5 +64,20 @@ public class DiagramGenerator {
         return isCreat;
 
     }
-    
+   
+    /**
+     * @Description Check if the executable file Graphviz (dot) exists :
+     * @Note Graphviz (dot) is executable file in system to draw
+     */
+    private boolean isDotCommandAvailable() {
+        try {
+            Process process = new ProcessBuilder("dot", "-V")
+                    .redirectErrorStream(true)
+                    .start();
+            int exitCode = process.waitFor();
+            return exitCode == 0;
+        } catch (IOException | InterruptedException e) {
+            return false;
+        }
+    }
 }
