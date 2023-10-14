@@ -89,7 +89,7 @@ public class Main{
         relationship.setRelationshipType(RelationType.GENERALIZATION);
 
         daigram.addClass(class1);
-        daigram.addClassIfNotExist(class2);
+        daigram.addClass(class2);
         daigram.addClassIfNotExist(class3);
         daigram.addRelationship(relationship);
         daigram.addRelationshipIfNotExist(relationship);

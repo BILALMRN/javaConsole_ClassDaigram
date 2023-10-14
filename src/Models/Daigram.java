@@ -79,7 +79,7 @@ public class Daigram {
     }
     public void addClassIfNotExist(Classe c) {
         if(c != null ){
-            if(this.daigram.contains(c)) 
+            if(!this.daigram.contains(c)) 
                 this.daigram.add(c);
         }
         
@@ -114,7 +114,7 @@ public class Daigram {
     }
     public void addRelationshipIfNotExist(Relationship c) {
         if(c != null ){
-            if(this.relationships.contains(c)) 
+            if(!this.relationships.contains(c)) 
                 this.relationships.add(c);
         }
         
