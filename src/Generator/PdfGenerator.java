@@ -8,10 +8,11 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import java.io.File;
 import java.util.Map;
-
+// pour converture file json a file pdf
 public class PdfApp {
 
     public static void main(String[] args) throws Exception {
+        // chemin vers file json
         File jsonFile = new File("./resource/test.json").getAbsoluteFile();
 
         ObjectMapper mapper = new ObjectMapper();
