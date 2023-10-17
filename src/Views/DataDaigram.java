@@ -8,7 +8,7 @@ import Models.Daigram;
 import Models.Relationship;
 import Models.Enum.RelationType;
 
-public class DataDaigram {
+ class DataDaigram {
     
     private Daigram daigram;
     protected Scanner scanner = new Scanner(System.in);
@@ -20,19 +20,19 @@ public class DataDaigram {
     
 
     public Daigram createDaigram() {
-        System.out.println("Enter the daigram name:");
+        System.out.print("Enter the daigram name: ");
         String diagramsName = scanner.nextLine();
         daigram.setDiagramsName(diagramsName.isEmpty() ? DefaultName+=1 : diagramsName);
         
-        System.out.println("Enter the Author name:");
+        System.out.print("Enter the Author name: ");
         String diagramsAuthor = scanner.nextLine();
         daigram.diagramsAuthor = diagramsAuthor;
 
-        System.out.println("Enter the diagrams description:");
+        System.out.print("Enter the diagrams description: ");
         String diagramsDescription = scanner.nextLine();
         daigram.diagramsDescription = diagramsDescription;
 
-        System.out.println("Do you want to add class to the daigram? (yes/no)");
+        System.out.print("Do you want to add class to the daigram? (yes/no)");
         String addClasses = scanner.nextLine().toLowerCase();
 
         if (addClasses.equals("yes")) {
@@ -43,7 +43,7 @@ public class DataDaigram {
                 }
                 
                 daigram.addClassIfNotExist(createClass());
-                System.out.println("Enter 'done' when finished.");
+                System.out.println("Do you want to add other class to the daigram? (yes/no);Enter 'done' when finished.");
                 addClasses = scanner.nextLine();
             }
         }
@@ -60,7 +60,7 @@ public class DataDaigram {
                 }
                 
                 daigram.addRelationshipIfNotExist(createRelationship());
-                System.out.println("Enter 'done' when finished.");
+                System.out.println("Do you want to add other Relationship to the daigram? (yes/no);Enter 'done' when finished.");
                 addRelationship = scanner.nextLine();
             }
             
@@ -81,27 +81,28 @@ public class DataDaigram {
         printAllNameClass();
         Relationship relationship = new Relationship();
         System.out.println("Example:    ParentClass --relation-- ChildClass");
-        System.out.println("Enter the name of ParentClass  the relationship:");
+        System.out.print("Enter the name of ParentClass  the relationship: ");
         relationship.setParentClass(scanner.nextLine().toLowerCase());
-        System.out.println("Enter the name of ChildClass  the relationship:");
+        System.out.print("Enter the name of ChildClass  the relationship: ");
         relationship.setChildClass(scanner.nextLine().toLowerCase());
 
         relationship.setRelationshipType(choiceRelationType());
         
         System.out.println("Do you want to add Multiplicity to the Relationship? (yes/no)");
         System.out.println("Example:    ParentClass '1..2'  --relation--  '0..*' ChildClass");
+        System.out.print(" >>  : ");
         String addMultiplicity = scanner.nextLine().toLowerCase();
 
         if (addMultiplicity.equals("yes")) {
-            System.out.println("Enter the Multiplicity of ParentClass  the relationship:");
+            System.out.print("Enter the Multiplicity of ParentClass  the relationship: ");
             relationship.setParentMultiplicit(scanner.nextLine().toLowerCase());
-            System.out.println("Enter the Multiplicity of ChildClass  the relationship:");
+            System.out.print("Enter the Multiplicity of ChildClass  the relationship: ");
             relationship.setChildMultiplicit(scanner.nextLine().toLowerCase());
         }
         return relationship;
     }
 
-    public RelationType choiceRelationType(){
+    private RelationType choiceRelationType(){
         int choice;
         do{
         System.out.println("choose relationship type (NUM ):");
@@ -174,19 +175,19 @@ public class DataDaigram {
         
         Classe classe = new Classe();
 
-        System.out.println("Enter the class name:");
+        System.out.print("Enter the class name: ");
         String className = scanner.nextLine();
         classe.setClassName(className.isEmpty() ? DefaultName+=1 : className);
         
 
-        System.out.println("Do you want to add attributes to the class? (yes/no)");
+        System.out.println("Do you want to add attributes to the class? (yes/no) : ");
         String addAttributes = scanner.nextLine().toLowerCase();
 
         if (addAttributes.equals("yes")) {
             classe.attributes.addAll(createAttributes());
         }
 
-        System.out.println("Do you want to add methods to the class? (yes/no)");
+        System.out.println("Do you want to add methods to the class? (yes/no) : ");
         String addMethods = scanner.nextLine().toLowerCase();
 
         if (addMethods.equals("yes")) {

@@ -10,7 +10,7 @@ public class DataEntry extends DataDaigram {
         super();
     }
 
-    public String chooseFilePathForSave() {
+    public  String chooseFilePathForSave() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showSaveDialog(null);
 
