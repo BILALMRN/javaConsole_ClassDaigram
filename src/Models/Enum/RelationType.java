@@ -22,7 +22,11 @@ public enum RelationType {
 	GENERALIZATION("--|>"),
 
 	// Represents relation between class and interface. When class implements interfaces.
-	REALIZATION("..|>"); // When implements is used
+	REALIZATION("..|>"),
+
+	
+	INHERITANCE("<|--") ; // Extension 
+	
     
     private String symbol;
 

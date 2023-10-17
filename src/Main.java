@@ -13,21 +13,21 @@ public class Main{
     public static void main(String[] args) {
 
 
-        /// teste le code 
+        /// tested le code
 
-        /// creat le projet
+        /// create le project
         Diagrams project = new Diagrams();
         project.setNameProject("test");
 
 
-        // creat Daigram 
+        // create Diagram
          Daigram daigram = new Daigram();
          daigram.diagramsAuthor = "bilal";
-         daigram.diagramsDescription = "diagram de ecomerce pour test";
+         daigram.diagramsDescription = "diagram de ecommerce pour test";
 
-         daigram.setDiagramsName("dagram de ecomerce");
+         daigram.setDiagramsName("diagram de ecommerce");
 
-         // creat class
+         // create class
 
         Classe class1 = new Classe();
 
@@ -78,7 +78,7 @@ public class Main{
         class3.methods.add("sell()");
         class3.methods.add("getSold()");
 
-        //relationshep
+        //relationship
 
         Relationship relationship = new Relationship();
 
