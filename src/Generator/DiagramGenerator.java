@@ -1,17 +1,14 @@
 package Generator;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import Generator.Helper.GenerateUML;
-import Models.Daigram;
+import Models.Diagram;
 import Models.Diagrams;
 
 public class DiagramGenerator {
-    private String path;
+    private String path = "Path is empty";
 
 
     // doc for utilisation a lib plantuml : https://plantuml.com/class-diagram
@@ -25,7 +22,7 @@ public class DiagramGenerator {
              validData(path,diagrams) &&
              createdFolderIfNotExist(diagrams.getNameProject()) 
             ){
-             for (Daigram diagram : diagrams.getDiagramList())
+             for (Diagram diagram : diagrams.getDiagramList())
              {
                  GenerateUML.generateUmlImage(diagram,path);
              }
@@ -75,8 +72,10 @@ public class DiagramGenerator {
                     .redirectErrorStream(true)
                     .start();
             int exitCode = process.waitFor();
+            System.out.println("ok");
             return exitCode == 0;
         } catch (IOException | InterruptedException e) {
+            System.out.println(":not ");
             return false;
         }
     }

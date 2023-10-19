@@ -4,9 +4,10 @@ import java.io.IOException;
 
 import Generator.DiagramGenerator;
 import Models.Classe;
-import Models.Daigram;
+import Models.Diagram;
 import Models.Diagrams;
 import Models.Relationship;
+import Models.Enum.RelationType;
 
 public class test {
     public static void main(String[] args) {
@@ -18,11 +19,11 @@ public class test {
 
 
         // create Diagram
-         Daigram daigram = new Daigram();
-         daigram.diagramsAuthor = "bilal";
-         daigram.diagramsDescription = "diagram de ecommerce pour test";
+         Diagram diagram = new Diagram();
+         diagram.diagramsAuthor = "bilal";
+         diagram.diagramsDescription = "diagram de ecommerce pour test";
 
-         daigram.setDiagramsName("diagram de ecommerce");
+         diagram.setDiagramsName("diagram de ecommerce");
 
          // create class
 
@@ -104,16 +105,16 @@ public class test {
 
         ////* */
 
-        daigram.addClass(class1);
-        daigram.addClass(class2);
-        daigram.addClassIfNotExist(class3);
-        daigram.addRelationship(relationship);
-        daigram.addRelationshipIfNotExist(relationship1);
-        daigram.addRelationshipIfNotExist(relationship2);
+        diagram.addClass(class1);
+        diagram.addClass(class2);
+        diagram.addClassIfNotExist(class3);
+        diagram.addRelationship(relationship);
+        diagram.addRelationshipIfNotExist(relationship1);
+        diagram.addRelationshipIfNotExist(relationship2);
 
-        project.addDaigram(daigram);
-        project.addDaigramIfNotExist(daigram);
-        project.addDaigramIfNotExist(daigram);
+        project.addDaigram(diagram);
+        project.addDaigramIfNotExist(diagram);
+        project.addDaigramIfNotExist(diagram);
 
         DiagramGenerator generator = new DiagramGenerator();
         try {

@@ -7,11 +7,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import Models.Classe;
-import Models.Daigram;
+import Models.Diagram;
 import Models.Relationship;
 
 public class GenerateUML {
-    private static String generateUmlString(Daigram diagram) {
+    private static String generateUmlString(Diagram diagram) {
         StringBuilder uml = new StringBuilder();
 
         // @startuml
@@ -25,6 +25,7 @@ public class GenerateUML {
 
         // @enduml
 
+        if (diagram.getListClass().size() < 1) return "";
 
         uml.append("@startuml\n");
         
@@ -54,24 +55,49 @@ public class GenerateUML {
         return uml.toString();
     }
 
-    public static void generateUmlImage(Daigram diagram, String path) throws IOException {
+    public static void generateUmlImage(Diagram diagram, String path) throws IOException {
         String plantUmlText = generateUmlString(diagram);//generation the style image and contain
-        String fullPathImage = path + File.separator + diagram.getDiagramsName()+ ".png";
+        if(plantUmlText.isEmpty()) {
+            System.out.println(" daigram is empty ");
+            return;
+        }
+        String fullPathImage = createFolderIfNotExist(path) + File.separator + diagram.getDiagramsName()+ ".png";
+        System.out.println(fullPathImage);
         generateImage(fullPathImage, plantUmlText);
               
     }
 
+    private static String createFolderIfNotExist(String folderPath){
+        File folder = new File(folderPath);
+        if(!folder.exists()){
+            return  folder.mkdir() ? folder.getAbsolutePath() : folderPath;
+        }
+        return folderPath;
 
+    }
 
     private static void generateImage(String outputPath,String plantUmlText) throws IOException {
+        // if(plantUmlText.isEmpty() || plantUmlText == null){
+        //     System.out.println("error");
+        //     return;
+        // }
+        
+
+
         File outputFile = new File(outputPath);
         FileOutputStream outputStream = new FileOutputStream(outputFile);
 
-        SourceStringReader reader = new SourceStringReader(plantUmlText);
+        
         try {
-            reader.outputImage(outputStream);
+            SourceStringReader reader = new SourceStringReader(plantUmlText);
+        if(reader.equals(null)){
+            System.out.println("error");
+            return;
+        }
+        reader.outputImage(outputStream);
+        System.out.println("is pass");
             System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error generating UML image: " + e.getMessage());
         } finally {
             if (outputStream != null) {

@@ -3,11 +3,11 @@ package Models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Daigram {
+public class Diagram {
     private static int id=1;
     private String diagramsName;
     private List<Relationship> relationships;
-    private List<Classe> daigram;
+    private List<Classe> diagram;
     
 
     public String diagramsDescription;
@@ -15,17 +15,17 @@ public class Daigram {
 
 
     //#region constractor
-    public Daigram() {
-        this.daigram = new ArrayList<Classe>();
+    public Diagram() {
+        this.diagram = new ArrayList<Classe>();
         this.relationships = new ArrayList<Relationship>();
         this.id+=1;
     }
     
-    public Daigram(String diagramsName, String diagramsDescription, String diagramsAuthor, List<Classe> daigram) {
+    public Diagram(String diagramsName, String diagramsDescription, String diagramsAuthor, List<Classe> diagram) {
         this.diagramsDescription = diagramsDescription;
         this.diagramsAuthor = diagramsAuthor;
         setDiagramsName(diagramsName);
-        this.daigram = new ArrayList<Classe>();
+        this.diagram = new ArrayList<Classe>();
         this.id+=1;
     }
     //#endregion
@@ -41,7 +41,7 @@ public class Daigram {
         if(diagramsName != null || !diagramsName.isEmpty())
         this.diagramsName = diagramsName;
         else throw 
-                new IllegalArgumentException("daigram is null");
+                new IllegalArgumentException("diagram is null");
     }
     public List<Relationship> getListRelationships() {
         return relationships;
@@ -55,50 +55,50 @@ public class Daigram {
         this.relationships = relationships;
     }
     public List<Classe> getListClass() {
-        return daigram;
+        return diagram;
     }
-    public void setListClass(List<Classe> daigram) {
-        if(daigram != null)
-        this.daigram = daigram;
+    public void setListClass(List<Classe> diagram) {
+        if(diagram != null)
+        this.diagram = diagram;
         else throw 
-                new IllegalArgumentException("daigram is null   / List<Class> is null");
+                new IllegalArgumentException("diagram is null   / List<Class> is null");
     }
     
     //#endregion
 
     public void editClass(Classe c, int index) {
-        if(c != null && index >= 0 && index < this.daigram.size())
-        this.daigram.set(index, c);
+        if(c != null && index >= 0 && index < this.diagram.size())
+        this.diagram.set(index, c);
         else throw 
                 new IllegalArgumentException("class is null or index not exist");
     }
     public void addClass(Classe c) {
         if(c != null ){
-            this.daigram.add(c);
+            this.diagram.add(c);
         }
     }
     public void addClassIfNotExist(Classe c) {
         if(c != null ){
-            if(!this.daigram.contains(c)) 
-                this.daigram.add(c);
+            if(!this.diagram.contains(c)) 
+                this.diagram.add(c);
         }
         
 
         else throw 
-                new IllegalArgumentException("daigram is null");
+                new IllegalArgumentException("diagram is null");
     }
     public void removeClass(Classe c) {
 
         if(c != null){
-            this.daigram.remove(c);
+            this.diagram.remove(c);
         }
 
 
         else throw 
-                new IllegalArgumentException("daigram is null");
+                new IllegalArgumentException("diagram is null");
     }
     public void removeAllClass() {
-        this.daigram.clear();
+        this.diagram.clear();
     }
 
     public void editRelationship(Relationship c, int index) {
@@ -120,7 +120,7 @@ public class Daigram {
         
 
         else throw 
-                new IllegalArgumentException("daigram is null");
+                new IllegalArgumentException("diagram is null");
     }
     public void removeRelationship(Classe c) {
 
@@ -130,7 +130,7 @@ public class Daigram {
 
 
         else throw 
-                new IllegalArgumentException("daigram is null");
+                new IllegalArgumentException("diagram is null");
     }
     public void removeAllRelationship() {
         this.relationships.clear();

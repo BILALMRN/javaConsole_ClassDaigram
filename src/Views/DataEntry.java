@@ -4,13 +4,13 @@ import javax.swing.JFileChooser;
 
 
 
-public class DataEntry extends DataDaigram {
+public class DataEntry extends DataDiagram {
 
     public DataEntry() {
         super();
     }
 
-    public  String chooseFilePathForSave() {
+    public static String chooseFilePathForSave() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showSaveDialog(null);
 
@@ -21,7 +21,7 @@ public class DataEntry extends DataDaigram {
         return null;
     }
 
-    public String chooseFilePathForLoad() {
+    public static String chooseFilePathForLoad() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
 

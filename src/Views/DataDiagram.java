@@ -4,35 +4,36 @@ import java.util.List;
 import java.util.Scanner;
 
 import Models.Classe;
-import Models.Daigram;
+import Models.Diagram;
 import Models.Relationship;
 import Models.Enum.RelationType;
 
- class DataDaigram {
+ class DataDiagram {
     
-    private Daigram daigram;
+    private Diagram diagram;
     protected Scanner scanner = new Scanner(System.in);
     private String DefaultName= "1";
 
-    public DataDaigram() {
-        daigram = new Daigram();
+    public DataDiagram() {
+        diagram = new Diagram();
     }
     
 
-    public Daigram createDaigram() {
-        System.out.print("Enter the daigram name: ");
+    public Diagram createDiagram() {
+        System.out.print("Enter the diagram name: ");
         String diagramsName = scanner.nextLine();
-        daigram.setDiagramsName(diagramsName.isEmpty() ? DefaultName+=1 : diagramsName);
+        diagram.setDiagramsName(diagramsName.isEmpty() ? DefaultName+=1 : diagramsName);
         
         System.out.print("Enter the Author name: ");
         String diagramsAuthor = scanner.nextLine();
-        daigram.diagramsAuthor = diagramsAuthor;
+        diagram.diagramsAuthor = diagramsAuthor;
 
         System.out.print("Enter the diagrams description: ");
         String diagramsDescription = scanner.nextLine();
-        daigram.diagramsDescription = diagramsDescription;
+        diagram.diagramsDescription = diagramsDescription;
 
-        System.out.print("Do you want to add class to the daigram? (yes/no)");
+        System.out.print("Do you want to add class to the diagram? (yes/no)");
+        System.out.print(":> ");
         String addClasses = scanner.nextLine().toLowerCase();
 
         if (addClasses.equals("yes")) {
@@ -42,14 +43,16 @@ import Models.Enum.RelationType;
                     break;
                 }
                 
-                daigram.addClassIfNotExist(createClass());
-                System.out.println("Do you want to add other class to the daigram? (yes/no);Enter 'done' when finished.");
+                diagram.addClassIfNotExist(createClass());
+                System.out.println("Do you want to add other class to the diagram? (yes/no);Enter 'done' when finished.");
+                System.out.print(":> ");
                 addClasses = scanner.nextLine();
             }
         }
         
 
-        System.out.println("Do you want to add Relationship to the daigram? (yes/no)");
+        System.out.println("Do you want to add Relationship to the diagram? (yes/no)");
+        System.out.print(":> ");
         String addRelationship = scanner.nextLine().toLowerCase();
 
         if (addRelationship.equals("yes")) {
@@ -59,19 +62,20 @@ import Models.Enum.RelationType;
                     break;
                 }
                 
-                daigram.addRelationshipIfNotExist(createRelationship());
-                System.out.println("Do you want to add other Relationship to the daigram? (yes/no);Enter 'done' when finished.");
+                diagram.addRelationshipIfNotExist(createRelationship());
+                System.out.println("Do you want to add other Relationship to the diagram? (yes/no);Enter 'done' when finished.");
+                System.out.print(":> ");
                 addRelationship = scanner.nextLine();
             }
             
         }
 
-        return daigram;
+        return diagram;
     }
 
     private void printAllNameClass(){
         System.out.println("List of all classes:");
-        for (Classe classe : daigram.getListClass()) {
+        for (Classe classe : diagram.getListClass()) {
             System.out.println("#  " + classe.getClassName());
         }
     }
@@ -90,7 +94,7 @@ import Models.Enum.RelationType;
         
         System.out.println("Do you want to add Multiplicity to the Relationship? (yes/no)");
         System.out.println("Example:    ParentClass '1..2'  --relation--  '0..*' ChildClass");
-        System.out.print(" >>  : ");
+        System.out.print(":> ");
         String addMultiplicity = scanner.nextLine().toLowerCase();
 
         if (addMultiplicity.equals("yes")) {
@@ -113,6 +117,7 @@ import Models.Enum.RelationType;
         System.out.println("5. GENERALIZATION");
         System.out.println("6. REALIZATION");
         System.out.println("7. INHERITANCE");
+        System.out.print(":> ");
         choice = scanner.nextInt();
         }while(choice < 1 || choice > 7 );
         
@@ -147,6 +152,7 @@ import Models.Enum.RelationType;
     private List<String> createAttributes(){
 
         System.out.println("Enter attributes (e.g., 'id : int', 'name : string'). Enter 'done' when finished.");
+        System.out.print(":> ");
         List <String> attributes = new ArrayList<>();
             while (true) {
                 String attribute = scanner.nextLine();
@@ -160,6 +166,7 @@ import Models.Enum.RelationType;
 
     private List<String> createMethods(){
         System.out.println("Enter methods (e.g., 'getId() : int', 'getName() : string'). Enter 'done' when finished.");
+        System.out.print(":> ");
         List <String> methods = new ArrayList<>();
             while (true) {
                 String method = scanner.nextLine();
@@ -181,6 +188,7 @@ import Models.Enum.RelationType;
         
 
         System.out.println("Do you want to add attributes to the class? (yes/no) : ");
+        System.out.print(":> ");
         String addAttributes = scanner.nextLine().toLowerCase();
 
         if (addAttributes.equals("yes")) {
@@ -188,6 +196,7 @@ import Models.Enum.RelationType;
         }
 
         System.out.println("Do you want to add methods to the class? (yes/no) : ");
+        System.out.print(":> ");
         String addMethods = scanner.nextLine().toLowerCase();
 
         if (addMethods.equals("yes")) {

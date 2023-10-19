@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Diagrams{
     private String nameProject;
-    private List<Daigram> diagramList;
+    private List<Diagram> diagramList;
 
 
     public Diagrams(){
         this.diagramList = new ArrayList<>();
     }
-    public Diagrams(String nameProject, List<Daigram> diagramList) {
+    public Diagrams(String nameProject, List<Diagram> diagramList) {
 
     }
 
@@ -28,22 +28,22 @@ public class Diagrams{
         this.nameProject = nameProject;
     }
 
-    public List<Daigram> getDiagramList() {
+    public List<Diagram> getDiagramList() {
         return diagramList;
     }
 
-    public void setDiagramList(List<Daigram> diagramList) {
+    public void setDiagramList(List<Diagram> diagramList) {
         if(nameProject == null)
             throw new NullPointerException("diagramList project is null");
         this.diagramList = diagramList;
     }
 
-    public void addDaigram(Daigram c) {
+    public void addDaigram(Diagram c) {
         if(c != null ){
             this.diagramList.add(c);
         }
     }
-    public void addDaigramIfNotExist(Daigram c) {
+    public void addDaigramIfNotExist(Diagram c) {
         if(c != null ){
             if(!this.diagramList.contains(c)) 
                 this.diagramList.add(c);
@@ -53,7 +53,7 @@ public class Diagrams{
         else throw 
                 new IllegalArgumentException("diagramList is null");
     }
-    public void removeDaigram(Daigram c) {
+    public void removeDaigram(Diagram c) {
 
         if(c != null){
             this.diagramList.remove(c);
