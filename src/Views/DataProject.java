@@ -12,7 +12,7 @@ public class DataProject extends DataEntry{
             try {
                 do{
                     System.out.println("entre you choice : \n" +
-                "1. create Diagram (img && json) \n" +
+                "1. create Diagram \n" +
                 "2. edit Diagram \n" +
                 "3. delete Diagram \n" +
                 "4. done \n");

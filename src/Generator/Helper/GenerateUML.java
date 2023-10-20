@@ -55,15 +55,15 @@ public class GenerateUML {
         return uml.toString();
     }
 
-    public static void generateUmlImage(Diagram diagram, String path) throws IOException {
+    public static String generateUmlImage(Diagram diagram, String path) throws IOException {
         String plantUmlText = generateUmlString(diagram);//generation the style image and contain
         if(plantUmlText.isEmpty()) {
             System.out.println(" daigram is empty ");
-            return;
+            return null;
         }
         String fullPathImage = createFolderIfNotExist(path) + File.separator + diagram.getDiagramsName()+ ".png";
-        System.out.println(fullPathImage);
-        generateImage(fullPathImage, plantUmlText);
+        //System.out.println(fullPathImage);
+        return generateImage(fullPathImage, plantUmlText);
               
     }
 
@@ -76,7 +76,7 @@ public class GenerateUML {
 
     }
 
-    private static void generateImage(String outputPath,String plantUmlText) throws IOException {
+    private static String generateImage(String outputPath,String plantUmlText) throws IOException {
         // if(plantUmlText.isEmpty() || plantUmlText == null){
         //     System.out.println("error");
         //     return;
@@ -92,11 +92,12 @@ public class GenerateUML {
             SourceStringReader reader = new SourceStringReader(plantUmlText);
         if(reader.equals(null)){
             System.out.println("error");
-            return;
+            return null;
         }
         reader.outputImage(outputStream);
         System.out.println("is pass");
-            System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
+        System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
+        return outputFile.getAbsolutePath();
         } catch (Exception e) {
             System.err.println("Error generating UML image: " + e.getMessage());
         } finally {
@@ -108,6 +109,7 @@ public class GenerateUML {
                 }
             }
         }
+        return null;
 
     }
 }

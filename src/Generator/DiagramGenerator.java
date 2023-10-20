@@ -6,12 +6,23 @@ import java.io.IOException;
 import Generator.Helper.GenerateUML;
 import Models.Diagram;
 import Models.Diagrams;
+import Models.ImgData;
+import Models.PdfData;
 
 public class DiagramGenerator {
     private String path = "Path is empty";
+    private PdfData pdfData = null;
 
-
+    
     // doc for utilisation a lib plantuml : https://plantuml.com/class-diagram
+
+    public PdfData getPdfData(){
+        if(pdfData== null){
+            throw new IllegalArgumentException("PdfData is null you need to execute function generateDiagrams first!!!");
+        }
+        return pdfData;
+    }
+
     /**
      * @param path
      * @param diagrams
@@ -21,10 +32,17 @@ public class DiagramGenerator {
          if( isDotCommandAvailable() && /* Check if the executable file Graphviz (dot) exists: to draw */
              validData(path,diagrams) &&
              createdFolderIfNotExist(diagrams.getNameProject()) 
-            ){
+            )
+            {
+            pdfData.pdfName = diagrams.getNameProject();
+            pdfData = new PdfData();
              for (Diagram diagram : diagrams.getDiagramList())
              {
-                 GenerateUML.generateUmlImage(diagram,path);
+                var pathImg = GenerateUML.generateUmlImage(diagram,path);
+                if(path != null){
+                    pdfData.imgs.add( new ImgData(diagram.getDiagramsName(), diagram.diagramsDescription, pathImg));
+                }
+                
              }
             }
         
@@ -54,11 +72,11 @@ public class DiagramGenerator {
      */
     private boolean createdFolderIfNotExist(String folderPath){
         File folder = new File(folderPath);
-        boolean isCreat = folder.exists();
-        if(!isCreat){
-            isCreat = folder.mkdir();
+        boolean isCreate = folder.exists();
+        if(!isCreate){
+            isCreate = folder.mkdir();
         }
-        return isCreat;
+        return isCreate;
 
     }
    
