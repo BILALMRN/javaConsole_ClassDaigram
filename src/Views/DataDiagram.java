@@ -50,6 +50,7 @@ import Models.Enum.RelationType;
             }
         }
         
+        if(diagram.getListClass().size() < 1) return diagram ;
 
         System.out.println("Do you want to add Relationship to the diagram? (yes/no)");
         System.out.print(":> ");
