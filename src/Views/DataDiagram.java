@@ -39,7 +39,7 @@ import Models.Enum.RelationType;
         if (addClasses.equals("yes")) {
             addClasses = "";
             while (true) {
-                if (addClasses.equals("done")) {
+                if (addClasses.equals("done") || !addClasses.equals("yes")) {
                     break;
                 }
                 

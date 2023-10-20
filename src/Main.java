@@ -2,8 +2,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import Generator.DiagramGenerator;
-import Models.Diagrams;
-import Views.DataEntry;
 import Views.DataProject;
 
 public class Main{

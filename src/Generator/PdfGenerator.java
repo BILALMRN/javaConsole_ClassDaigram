@@ -1,15 +1,19 @@
 // package Generator;
-// import com.fasterxml.jackson.databind.ObjectMapper;
-// import com.fasterxml.jackson.databind.SerializationFeature;
-// import com.fasterxml.jackson.databind.type.MapType;
+
+// import java.io.File;
+// import java.util.Map;
+
 // import org.apache.pdfbox.pdmodel.PDDocument;
 // import org.apache.pdfbox.pdmodel.PDPage;
 // import org.apache.pdfbox.pdmodel.PDPageContentStream;
 // import org.apache.pdfbox.pdmodel.font.PDType1Font;
-// import java.io.File;
-// import java.util.Map;
+
+// import com.fasterxml.jackson.databind.ObjectMapper;
+// import com.fasterxml.jackson.databind.SerializationFeature;
+// import com.fasterxml.jackson.databind.type.MapType;
+
 // // pour converture file json a file pdf
-// public class PdfApp {
+// public class PdfGenerator {
 
 //     public static void main(String[] args) throws Exception {
 //         // chemin vers file json
