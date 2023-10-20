@@ -69,8 +69,8 @@ public class Main{
         generate = new DiagramGenerator();                        
         generate.generateDiagrams(path,DataProject.createProject());
     }
-    public static void createNewPdf(){
-        createNewPdf();
+    public static void createNewPdf() throws IOException{
+        createNewProject();
         var pdfData = generate.getPdfData();
         ///
         System.out.println("this method not completed");
