@@ -12,9 +12,9 @@ public class Main{
         try {
             do{
                 System.out.println("Entre you choice : \n" +
-            "1. create project Diagram (img && json) \n" +
-            "2. edit project Diagram \n" +
-            "3. generate pdf contain Diagrams project \n" +
+            "1. create project \n" +
+            "2. edit project \n" +
+            "3. generate pdf \n" +
             "4. exit \n");
 
             System.out.print(":> ");
@@ -26,7 +26,8 @@ public class Main{
             switch(choice){
                 case 1 : 
                     {
-                        System.out.println("***************you must choose file path***************");
+                        System.out.println("***************choose file path***************");
+                        System.out.println("");
                         var path = DataProject.chooseFilePathForSave();
                         if(path == null){
                             System.out.println(":) you must choose file path");
