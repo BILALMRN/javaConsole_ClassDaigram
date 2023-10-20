@@ -5,7 +5,7 @@ import Generator.DiagramGenerator;
 import Views.DataProject;
 
 public class Main{
-    private static DiagramGenerator generate;
+    private static DiagramGenerator generate= new DiagramGenerator();;
 
     public static void main(String[] args) throws IOException {
 
@@ -26,12 +26,14 @@ public class Main{
             
             switch(choice){
                 case 1 : 
+                    generate = new DiagramGenerator(); 
                     createNewProject();
                     break;
                 case 2 :
 
                     break;
                 case 3 :
+                    generate = new DiagramGenerator(); 
                     createNewPdf();
                     break;
                 case 4 :
@@ -65,8 +67,7 @@ public class Main{
         if(path == null){
             System.out.println(":) you must choose file path");
             return;
-        }
-        generate = new DiagramGenerator();                        
+        }                     
         generate.generateDiagrams(path,DataProject.createProject());
     }
     public static void createNewPdf() throws IOException{

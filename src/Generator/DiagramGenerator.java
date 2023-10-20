@@ -34,12 +34,12 @@ public class DiagramGenerator {
              createdFolderIfNotExist(diagrams.getNameProject()) 
             )
             {
-            pdfData.pdfName = diagrams.getNameProject();
             pdfData = new PdfData();
+            pdfData.pdfName = diagrams.getNameProject();
              for (Diagram diagram : diagrams.getDiagramList())
              {
                 var pathImg = GenerateUML.generateUmlImage(diagram,path);
-                if(path != null){
+                if(pathImg != null){
                     pdfData.imgs.add( new ImgData(diagram.getDiagramsName(), diagram.diagramsDescription, pathImg));
                 }
                 
@@ -50,8 +50,7 @@ public class DiagramGenerator {
     }
     private boolean validData(String path,Diagrams diagrams){
         setPath(path);
-        if(diagrams == null)
-            throw new IllegalArgumentException("Your project is empty no diagrams");
+        if(diagrams == null ) return false;
         
         return true;
     }
