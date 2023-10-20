@@ -12,7 +12,7 @@ import Models.Enum.RelationType;
     
     private Diagram diagram;
     protected Scanner scanner = new Scanner(System.in);
-    private String DefaultName= "1";
+    private static String DefaultName= "1";
 
     public DataDiagram() {
         diagram = new Diagram();
