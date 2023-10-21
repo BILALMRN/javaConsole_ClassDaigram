@@ -22,6 +22,7 @@ public class Main{
             Scanner input = new Scanner(System.in);
             if (!input.hasNextInt()) choice = 0;
             else choice = input.nextInt();
+            input.close();
                 // Process the integer
             
             switch(choice){
