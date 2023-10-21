@@ -10,17 +10,18 @@ public class DataEntry extends DataDiagram {
         super();
     }
 
-    public static String chooseFilePathForSave() {
+     public static String chooseFilePathForSave() {
         JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showSaveDialog(null);
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
+        int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            return fileChooser.getSelectedFile().getAbsolutePath();
+            File selectedDirectory = fileChooser.getSelectedFile();
+            String directoryPath = selectedDirectory.getAbsolutePath();
+            return directoryPath;
         }
-
         return null;
     }
-
     public static String chooseFilePathForLoad() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
