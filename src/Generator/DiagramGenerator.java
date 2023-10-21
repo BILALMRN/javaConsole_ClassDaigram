@@ -92,7 +92,7 @@ public class DiagramGenerator {
             System.out.println("ok");
             return exitCode == 0;
         } catch (IOException | InterruptedException e) {
-            System.out.println(":not ");
+            System.out.println("------------- isDot Command Not Available \n\n");
             return false;
         }
     }
