@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import Generator.DiagramGenerator;
+import Generator.PdfGenerator;
 import Generator.Helper.JsonHelper;
 import Models.Diagrams;
 import Views.DataProject;
@@ -33,6 +34,7 @@ public class Main{
                     System.out.print("  :> entre name of the project : ");
                     String nameProject = input.next();
                     nameProject = nameProject == null ? "lastProject" : nameProject;
+                    ///
                     createNewProject(nameProject);
                     break;
                 case 2 :
@@ -40,8 +42,10 @@ public class Main{
                     break;
                 case 3 :
                     generate = new DiagramGenerator(); 
+                    System.out.print("  :> entre name of the PDF : ");
                     String namePdf = input.next();
                     namePdf = namePdf == null ? "lastPDF" : namePdf;
+                    ///
                     createNewPdf(namePdf);
                     break;
                 case 4 :
@@ -68,23 +72,30 @@ public class Main{
         
         
     }
-    public static void createNewProject(String nameProject) throws IOException{
+    private static String getPath(){
         System.out.println("***************choose file path***************");
         System.out.println("");
-        var path = DataProject.chooseFilePathForSave();
+        return DataProject.chooseFilePathForSave();
+    }
+    private static String createNewProject(String nameProject) throws IOException{
+        var path = getPath();
         if(path == null){
             System.out.println(":) you must choose file path");
-            return;
+            return null;
         }
-        Diagrams newProject = DataProject.createProject() ;               
+        Diagrams newProject = DataProject.createProject() ;
+        newProject.setNameProject(nameProject);               
         generate.generateDiagrams(path,newProject);
         JsonHelper.saveUmlDiagramsAsJson(newProject,path);
+        return path;
     }
-    public static void createNewPdf(String namePdf) throws IOException{
-        createNewProject(namePdf);
+    private static void createNewPdf(String namePdf) throws IOException{
+        var path = createNewProject(namePdf);
+        if(path == null) return ;
+        
         var pdfData = generate.getPdfData();
-        ///
-        System.out.println("this method not completed");
+        PdfGenerator.generatePDF(pdfData, path);
+        System.out.println("completed");
 
     }
 

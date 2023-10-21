@@ -1,56 +1,61 @@
-// package Generator;
+package Generator;
 
-// import java.io.File;
-// import java.util.Map;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDSimpleFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts.FontName;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
-// import org.apache.pdfbox.pdmodel.PDDocument;
-// import org.apache.pdfbox.pdmodel.PDPage;
-// import org.apache.pdfbox.pdmodel.PDPageContentStream;
-// import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import Models.PdfData;
 
-// import com.fasterxml.jackson.databind.ObjectMapper;
-// import com.fasterxml.jackson.databind.SerializationFeature;
-// import com.fasterxml.jackson.databind.type.MapType;
+import java.io.File;
+import java.io.IOException;
 
-// // pour converture file json a file pdf
-// public class PdfGenerator {
+public class PdfGenerator {
 
-//     public static void main(String[] args) throws Exception {
-//         // chemin vers file json
-//         File jsonFile = new File("./resource/test.json").getAbsoluteFile();
+    public static void generatePDF(PdfData infoPdfData, String outputPath) {
+        try {
+            PDDocument document = new PDDocument();
+            PDPage page = new PDPage(PDRectangle.A4);
+            document.addPage(page);
 
-//         ObjectMapper mapper = new ObjectMapper();
-//         // enable pretty printing
-//         mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+            //FontName font_name_3v= Standard14Fonts.getMappedFontName("HELVETICA_BOLD");
+            PDFont pdfFont=  new PDType1Font(FontName.HELVETICA_BOLD);
+            contentStream.beginText();
+            contentStream.setFont(pdfFont, 12);
+            contentStream.newLineAtOffset(50, 700);
+            contentStream.showText(infoPdfData.pdfName);
 
-//         // read map from file
-//         MapType mapType = mapper.getTypeFactory().constructMapType(Map.class, String.class, Object.class);
-//         Map<String, Object> map = mapper.readValue(jsonFile, mapType);
+            for (var infoImage : infoPdfData.imgs) {
+                // Add titre and description text
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("titre: " + infoImage.titre);
+                contentStream.showText("\nDescription: " + infoImage.description);
+                contentStream.endText();
 
-//         // generate pretty JSON from map
-//         String json = mapper.writeValueAsString(map);
-//         // split by system new lines
-//         String[] strings = json.split(System.lineSeparator());
+                // Add images
+                PDImageXObject image = PDImageXObject.createFromFile(infoImage.imgPath, document);
+                contentStream.drawImage(image, 50, 500, image.getWidth(), image.getHeight());
 
-//         PDDocument document = new PDDocument();
-//         PDPage page = new PDPage();
-//         document.addPage(page);
+                // Add a new page for the next set of info (optional)
+                contentStream.close();
+                page = new PDPage(PDRectangle.A4);
+                document.addPage(page);
+                contentStream = new PDPageContentStream(document, page);
+            }
 
-//         PDPageContentStream contentStream = new PDPageContentStream(document, page);
-
-//         contentStream.setFont(PDType1Font.COURIER, 12);
-//         contentStream.beginText();
-//         contentStream.setLeading(14.5f);
-//         contentStream.newLineAtOffset(25, 725);
-//         for (String string : strings) {
-//             contentStream.showText(string);
-//             // add line manually
-//             contentStream.newLine();
-//         }
-//         contentStream.endText();
-//         contentStream.close();
-
-//         document.save("pdfBoxHelloWorld.pdf");
-//         document.close();
-//     }
-//     }
+            contentStream.close();
+            document.save(outputPath+ File.separator+ "pdf.pdf");
+            System.out.println(outputPath+ File.separator+ "pdf.pdf");
+            document.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

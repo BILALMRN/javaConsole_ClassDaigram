@@ -12,9 +12,9 @@ public class PdfData {
         imgs = new java.util.ArrayList<>();
     }
 
-    public static ImgData createImg(String titre, String description, String imgPath){
-        return new ImgData( titre,  description,  imgPath);
-    }
+    // public static ImgData createImg(String titre, String description, String imgPath){
+    //     return new ImgData( titre,  description,  imgPath);
+    // }
 }
 
 
