@@ -39,12 +39,12 @@ import Models.Enum.RelationType;
         if (addClasses.equals("yes")) {
             addClasses = "";
             while (true) {
-                if (addClasses.equals("done")) {
+                if (addClasses.equals("no")) {
                     break;
                 }
                 
                 diagram.addClassIfNotExist(createClass());
-                System.out.println("Do you want to add other class to the diagram? (yes/no);Enter 'done' when finished.");
+                System.out.println("Do you want to add other class to the diagram? (yes/no);");
                 System.out.print(":> ");
                 addClasses = scanner.nextLine();
             }
@@ -59,12 +59,12 @@ import Models.Enum.RelationType;
         if (addRelationship.equals("yes")) {
             addRelationship = "";
             while (true) {
-                if (addRelationship.equals("done")) {
+                if (addRelationship.equals("no")) {
                     break;
                 }
                 
                 diagram.addRelationshipIfNotExist(createRelationship());
-                System.out.println("Do you want to add other Relationship to the diagram? (yes/no);Enter 'done' when finished.");
+                System.out.println("Do you want to add other Relationship to the diagram? (yes/no);.");
                 System.out.print(":> ");
                 addRelationship = scanner.nextLine();
             }
@@ -152,7 +152,7 @@ import Models.Enum.RelationType;
 
     private List<String> createAttributes(){
 
-        System.out.println("Enter attributes (e.g., 'id : int', 'name : string'). Enter 'done' when finished.");
+        System.out.println("Enter attributes exemple( Visibilite nom_de_Attribut :Type ). Enter 'done' when finished.");
         System.out.print(":> ");
         List <String> attributes = new ArrayList<>();
             while (true) {
@@ -166,7 +166,7 @@ import Models.Enum.RelationType;
     }
 
     private List<String> createMethods(){
-        System.out.println("Enter methods (e.g., 'getId() : int', 'getName() : string'). Enter 'done' when finished.");
+       System.out.println("Enter methods exemple( Visibilite nom_de_Method():Type_de_retoun ). Enter 'done' when finished.");
         System.out.print(":> ");
         List <String> methods = new ArrayList<>();
             while (true) {
