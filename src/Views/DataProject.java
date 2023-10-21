@@ -20,7 +20,7 @@ public class DataProject extends DataEntry{
                 Scanner input = new Scanner(System.in);
                 if (!input.hasNextInt()) choice = 0;
                 else choice = input.nextInt();
-                input.close();
+                //input.close();
                 switch(choice){
                     case 1 : 
                         {
@@ -48,6 +48,7 @@ public class DataProject extends DataEntry{
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }
+            
             return project;
     }
 }

@@ -39,14 +39,13 @@ import Models.Enum.RelationType;
         if (addClasses.equals("yes")) {
             addClasses = "";
             while (true) {
-                if (addClasses.equals("no")) {
-                    break;
-                }
-                
                 diagram.addClassIfNotExist(createClass());
                 System.out.println("Do you want to add other class to the diagram? (yes/no);");
                 System.out.print(":> ");
                 addClasses = scanner.nextLine();
+                if (!addClasses.equalsIgnoreCase("yes")) {
+                    break;
+                }
             }
         }
         
@@ -59,14 +58,14 @@ import Models.Enum.RelationType;
         if (addRelationship.equals("yes")) {
             addRelationship = "";
             while (true) {
-                if (addRelationship.equals("no")) {
-                    break;
-                }
                 
                 diagram.addRelationshipIfNotExist(createRelationship());
                 System.out.println("Do you want to add other Relationship to the diagram? (yes/no);.");
                 System.out.print(":> ");
                 addRelationship = scanner.nextLine();
+                if (!addClasses.equalsIgnoreCase("yes")) {
+                    break;
+                }
             }
             
         }

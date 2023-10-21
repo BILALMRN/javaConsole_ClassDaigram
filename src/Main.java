@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import Generator.DiagramGenerator;
+import Generator.Helper.JsonHelper;
+import Models.Diagrams;
 import Views.DataProject;
 
 public class Main{
@@ -22,20 +24,25 @@ public class Main{
             Scanner input = new Scanner(System.in);
             if (!input.hasNextInt()) choice = 0;
             else choice = input.nextInt();
-            input.close();
+            //input.close();
                 // Process the integer
             
             switch(choice){
                 case 1 : 
                     generate = new DiagramGenerator(); 
-                    createNewProject();
+                    System.out.print("  :> entre name of the project : ");
+                    String nameProject = input.next();
+                    nameProject = nameProject == null ? "lastProject" : nameProject;
+                    createNewProject(nameProject);
                     break;
                 case 2 :
 
                     break;
                 case 3 :
                     generate = new DiagramGenerator(); 
-                    createNewPdf();
+                    String namePdf = input.next();
+                    namePdf = namePdf == null ? "lastPDF" : namePdf;
+                    createNewPdf(namePdf);
                     break;
                 case 4 :
                     System.exit(0);
@@ -61,18 +68,20 @@ public class Main{
         
         
     }
-    public static void createNewProject() throws IOException{
+    public static void createNewProject(String nameProject) throws IOException{
         System.out.println("***************choose file path***************");
         System.out.println("");
         var path = DataProject.chooseFilePathForSave();
         if(path == null){
             System.out.println(":) you must choose file path");
             return;
-        }                     
-        generate.generateDiagrams(path,DataProject.createProject());
+        }
+        Diagrams newProject = DataProject.createProject() ;               
+        generate.generateDiagrams(path,newProject);
+        JsonHelper.saveUmlDiagramsAsJson(newProject,path);
     }
-    public static void createNewPdf() throws IOException{
-        createNewProject();
+    public static void createNewPdf(String namePdf) throws IOException{
+        createNewProject(namePdf);
         var pdfData = generate.getPdfData();
         ///
         System.out.println("this method not completed");
