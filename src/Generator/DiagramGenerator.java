@@ -31,7 +31,7 @@ public class DiagramGenerator {
     public void generateDiagrams(String path,Diagrams diagrams) throws IOException {
          if( isDotCommandAvailable() && /* Check if the executable file Graphviz (dot) exists: to draw */
              validData(path,diagrams) &&
-             createdFolderIfNotExist(diagrams.getNameProject()) 
+             createdFolderIfNotExist(path + File.separator + diagrams.getNameProject()) 
             )
             {
             pdfData = new PdfData();
@@ -40,7 +40,7 @@ public class DiagramGenerator {
              {
                 var pathImg = GenerateUML.generateUmlImage(diagram,path);
                 if(pathImg != null){
-                    pdfData.imgs.add( new ImgData(diagram.getDiagramsName(), diagram.diagramsDescription, pathImg));
+                    pdfData.imgs.add(new ImgData(diagram.getDiagramsName(), diagram.diagramsDescription, pathImg));
                 }
                 
              }

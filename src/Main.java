@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -72,19 +73,22 @@ public class Main{
         
         
     }
-    private static String getPath(){
+    private static String getAbsolutePath(){
         System.out.println("***************choose file path***************");
         System.out.println("");
         return DataProject.chooseFilePathForSave();
     }
     private static String createNewProject(String nameProject) throws IOException{
-        var path = getPath();
+        var path = getAbsolutePath();
         if(path == null){
             System.out.println(":) you must choose file path");
             return null;
         }
         Diagrams newProject = DataProject.createProject() ;
-        newProject.setNameProject(nameProject);               
+        
+        newProject.setNameProject(nameProject);  
+        path = path + File.separator +  nameProject; 
+
         generate.generateDiagrams(path,newProject);
         JsonHelper.saveUmlDiagramsAsJson(newProject,path);
         return path;
