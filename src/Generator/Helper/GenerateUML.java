@@ -95,7 +95,6 @@ public class GenerateUML {
             return null;
         }
         reader.outputImage(outputStream);
-        System.out.println("is pass");
         System.out.println("UML image generated at: " + outputFile.getAbsolutePath());
         return outputFile.getAbsolutePath();
         } catch (Exception e) {

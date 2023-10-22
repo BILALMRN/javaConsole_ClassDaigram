@@ -18,7 +18,7 @@ public class Main{
             do{
                 System.out.println("Entre you choice : \n" +
             "1. create project \n" +
-            "2. edit project \n" +
+            "2. edit project from JSON\n" +
             "3. generate pdf \n" +
             "4. exit \n");
 
@@ -39,7 +39,7 @@ public class Main{
                     createNewProject(nameProject);
                     break;
                 case 2 :
-
+                    editProject();
                     break;
                 case 3 :
                     generate = new DiagramGenerator(); 
@@ -73,9 +73,24 @@ public class Main{
         
         
     }
-    private static String getAbsolutePath(){
+
+    private static void editProject() throws IOException{
+        disaplayHeaderChoocePath();
+        String path = DataProject.chooseFilePathForLoad();
+        String jsonProject = DataProject.readJSONFileAsString(path);
+        System.out.println(path);
+        Diagrams project = JsonHelper.getUmlDiagramsFromJson(jsonProject);
+        if(project==null) return;
+        var t = path.lastIndexOf(File.separator + project.getNameProject()+ ".json");
+        String pathProject = path.substring(0,t);
+        generate.generateDiagrams(pathProject,project);
+    }
+    private static void disaplayHeaderChoocePath(){
         System.out.println("***************choose file path***************");
         System.out.println("");
+    }
+    private static String getAbsolutePath(){
+        disaplayHeaderChoocePath();
         return DataProject.chooseFilePathForSave();
     }
     private static String createNewProject(String nameProject) throws IOException{
@@ -85,7 +100,7 @@ public class Main{
             return null;
         }
         Diagrams newProject = DataProject.createProject() ;
-        
+
         newProject.setNameProject(nameProject);  
         path = path + File.separator +  nameProject; 
 

@@ -31,9 +31,8 @@ public class DiagramGenerator {
     public void generateDiagrams(String path,Diagrams diagrams) throws IOException {
          if( isDotCommandAvailable() && /* Check if the executable file Graphviz (dot) exists: to draw */
              validData(path,diagrams) &&
-             createdFolderIfNotExist(path + File.separator + diagrams.getNameProject()) 
-            )
-            {
+             createdFolderIfNotExist(path) 
+            ){
             pdfData = new PdfData();
             pdfData.pdfName = diagrams.getNameProject();
              for (Diagram diagram : diagrams.getDiagramList())

@@ -8,13 +8,25 @@ import Models.Diagrams;
 public class DataProject extends DataEntry{
     public static Diagrams createProject() throws IOException{
         Diagrams project = new Diagrams();
+        return choiceOperationDiagrams(project);
+    }
+    public static Diagrams editProject(Diagrams project) throws IOException{
+        if(project==null)throw new IllegalArgumentException("the project is null to edit");
+        return choiceOperationDiagrams(project);
+    }
+
+    private static Diagrams choiceOperationDiagrams(Diagrams project) throws IOException{
+        if(project == null){
+            //System.out.println("le project is null or empty ");
+            throw new IllegalArgumentException("the project is null");
+        }
         int choice = 0;
-            try {
+        try {
                 do{
                     System.out.println("entre you choice : \n" +
-                "1. create Diagram \n" +
-                "2. edit Diagram \n" +
-                "3. delete Diagram \n" +
+                "1. Add Diagram \n" +
+                "2. Edit Diagram \n" +
+                "3. Delete Diagram \n" +
                 "4. done \n");
                 System.out.print(":> ");
                 Scanner input = new Scanner(System.in);
@@ -48,7 +60,9 @@ public class DataProject extends DataEntry{
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }
-            
+
             return project;
     }
+
+
 }
