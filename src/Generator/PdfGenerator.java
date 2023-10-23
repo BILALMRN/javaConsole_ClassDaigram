@@ -24,22 +24,26 @@ public class PdfGenerator {
             document.open();
 
             // Create a font
-            //BaseFont baseFont = BaseFont.createFont(/*"path_to_your_font.ttf", */Font.FontFamily, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            Font font = FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLD);//new Font(baseFont, 12);
-
+            Font fontMainTitle = FontFactory.getFont(FontFactory.HELVETICA, 36, Font.BOLD);
+            Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA, 14, Font.BOLD);//new Font(baseFont, 12);
+            Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
+            
             // Add the title
-            Paragraph title = new Paragraph(infoPdfData.pdfName,font );
+            fontMainTitle.setColor(79, 129, 189);
+            Paragraph title = new Paragraph(infoPdfData.pdfName, fontMainTitle);
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
 
             for (var infoImage : infoPdfData.imgs) {
                 // Add title and description
-                Paragraph imageInfo = new Paragraph("Titre: " + infoImage.titre, font);
-                imageInfo.add(new Paragraph("Description: " + infoImage.description, font));
+                Paragraph imageInfo = new Paragraph("\n\n\n\nTitre: " + infoImage.titre, fontTitle);
+                imageInfo.add(new Paragraph("\n\nDescription:"));
+                imageInfo.add(new Paragraph(  "            " + infoImage.description, fontParagraph));
                 document.add(imageInfo);
 
                 // Add images
                 Image image = Image.getInstance(infoImage.imgPath);
+                image.setAlignment(Element.ALIGN_CENTER);
                 document.add(image);
 
                 // Start a new page (optional)
