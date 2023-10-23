@@ -5,11 +5,14 @@ import java.util.Scanner;
 
 import Models.Diagrams;
 
-public class DataProject extends DataEntry{
+public class DataProject extends DataDiagram{
+
+
     public static Diagrams createProject() throws IOException{
         Diagrams project = new Diagrams();
         return choiceOperationDiagrams(project);
     }
+
     public static Diagrams editProject(Diagrams project) throws IOException{
         if(project==null)throw new IllegalArgumentException("the project is null to edit");
         return choiceOperationDiagrams(project);
@@ -36,8 +39,8 @@ public class DataProject extends DataEntry{
                 switch(choice){
                     case 1 : 
                         {
-                        DataEntry dataEntry = new DataEntry();
-                        project.addDaigramIfNotExist(dataEntry.createDiagram());
+                        DataDiagram dataDiagram = new DataDiagram();
+                        project.addDaigramIfNotExist(dataDiagram.createDiagram());
                         
                         }
                         break;
@@ -45,7 +48,7 @@ public class DataProject extends DataEntry{
 
                         break;
                     case 3 :
-
+                        
                         break;
                     case 4 :
                         return project;
@@ -63,6 +66,7 @@ public class DataProject extends DataEntry{
 
             return project;
     }
+
 
 
 }

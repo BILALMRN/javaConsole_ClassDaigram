@@ -1,8 +1,10 @@
-package Views;
+package Views.Helper;
 
 import javax.swing.JFileChooser;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+
+
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -10,9 +12,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class DataEntry extends DataDiagram {
+public class FileHelper{
 
-    public DataEntry() {
+    public FileHelper() {
         super();
     }
  public static String readJSONFileAsString(String filePath) {

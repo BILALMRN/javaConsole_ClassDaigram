@@ -38,7 +38,7 @@ public class PdfGenerator {
                 // Add title and description
                 Paragraph imageInfo = new Paragraph("\n\n\n\nTitre: " + infoImage.titre, fontTitle);
                 imageInfo.add(new Paragraph("\n\nDescription:"));
-                imageInfo.add(new Paragraph(  "            " + infoImage.description, fontParagraph));
+                imageInfo.add(new Paragraph(  "            " + infoImage.description+"\n\n", fontParagraph));
                 document.add(imageInfo);
 
                 // Add images

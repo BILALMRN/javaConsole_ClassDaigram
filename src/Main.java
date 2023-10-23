@@ -7,13 +7,17 @@ import Generator.PdfGenerator;
 import Generator.Helper.JsonHelper;
 import Models.Diagrams;
 import Views.DataProject;
+import Views.Helper.FileHelper;
 
 public class Main{
-    private static DiagramGenerator generate= new DiagramGenerator();;
+    private static DiagramGenerator generate= new DiagramGenerator();
+    // private static Diagrams projectDiagrams = new Diagrams();
+    private static Scanner input;
 
     public static void main(String[] args) throws IOException {
 
         int choice = 0;
+        
         try {
             do{
                 System.out.println("Entre you choice : \n" +
@@ -23,7 +27,7 @@ public class Main{
             "4. exit \n");
 
             System.out.print(":> ");
-            Scanner input = new Scanner(System.in);
+            input = new Scanner(System.in);
             if (!input.hasNextInt()) choice = 0;
             else choice = input.nextInt();
             //input.close();
@@ -42,12 +46,8 @@ public class Main{
                     editProject();
                     break;
                 case 3 :
-                    generate = new DiagramGenerator(); 
-                    System.out.print("  :> entre name of the PDF : ");
-                    String namePdf = input.next();
-                    namePdf = namePdf == null ? "lastPDF" : namePdf;
                     ///
-                    createNewPdf(namePdf);
+                    createPdf();
                     break;
                 case 4 :
                     System.exit(0);
@@ -59,25 +59,20 @@ public class Main{
             }
 
             }while(true);
+            
         }catch (Exception e){
             System.out.println(e.getMessage());
+        }finally{
+            input.close();
         }
-        
-
-        
-        
-        
-
-
-    
-        
+   
         
     }
 
     private static void editProject() throws IOException{
         disaplayHeaderChoocePath();
-        String path = DataProject.chooseFilePathForLoad();
-        String jsonProject = DataProject.readJSONFileAsString(path);
+        String path = FileHelper.chooseFilePathForLoad();
+        String jsonProject = FileHelper.readJSONFileAsString(path);
         System.out.println(path);
         Diagrams project = JsonHelper.getUmlDiagramsFromJson(jsonProject);
         if(project==null) return;
@@ -85,14 +80,17 @@ public class Main{
         String pathProject = path.substring(0,t);
         generate.generateDiagrams(pathProject,project);
     }
+
     private static void disaplayHeaderChoocePath(){
         System.out.println("***************choose file path***************");
         System.out.println("");
     }
+    
     private static String getAbsolutePath(){
         disaplayHeaderChoocePath();
-        return DataProject.chooseFilePathForSave();
+        return FileHelper.chooseFilePathForSave();
     }
+
     private static String createNewProject(String nameProject) throws IOException{
         var path = getAbsolutePath();
         if(path == null){
@@ -108,9 +106,16 @@ public class Main{
         JsonHelper.saveUmlDiagramsAsJson(newProject,path);
         return path;
     }
-    private static void createNewPdf(String namePdf) throws IOException{
-        var path = createNewProject(namePdf);
-        if(path == null) return ;
+
+    private static void createPdf() throws IOException{
+        if(generate == null){
+            System.out.println(":) you need create/edit project first ");
+            return;
+        }
+        var path = generate.getPath();
+        if(path == null) {
+            System.out.println(":) you must choose file path");
+        } ;
         
         var pdfData = generate.getPdfData();
         PdfGenerator.generatePDF(pdfData, path);

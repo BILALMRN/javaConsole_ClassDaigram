@@ -10,7 +10,7 @@ import Models.ImgData;
 import Models.PdfData;
 
 public class DiagramGenerator {
-    private String path = "Path is empty";
+    private String path = null;
     private PdfData pdfData = null;
 
     
@@ -18,7 +18,7 @@ public class DiagramGenerator {
 
     public PdfData getPdfData(){
         if(pdfData== null){
-            throw new IllegalArgumentException("PdfData is null you need to execute function generateDiagrams first!!!");
+            throw new IllegalArgumentException("PdfData is null you need to execute generateDiagrams (add/edit project) first!!!");
         }
         return pdfData;
     }
