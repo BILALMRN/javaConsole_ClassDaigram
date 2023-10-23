@@ -1,61 +1,53 @@
 package Generator;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDSimpleFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
-import org.apache.pdfbox.pdmodel.font.Standard14Fonts.FontName;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.BaseFont;
 
 import Models.PdfData;
 
-import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class PdfGenerator {
 
     public static void generatePDF(PdfData infoPdfData, String outputPath) {
-        try {
-            PDDocument document = new PDDocument();
-            PDPage page = new PDPage(PDRectangle.A4);
-            document.addPage(page);
+        Document document = new Document();
 
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
-            //FontName font_name_3v= Standard14Fonts.getMappedFontName("HELVETICA_BOLD");
-            PDFont pdfFont=  new PDType1Font(FontName.HELVETICA_BOLD);
-            contentStream.beginText();
-            contentStream.setFont(pdfFont, 12);
-            contentStream.newLineAtOffset(50, 700);
-            contentStream.showText(infoPdfData.pdfName);
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(outputPath + File.separator + "pdf.pdf"));
+            document.open();
+
+            // Create a font
+            BaseFont baseFont = BaseFont.createFont("path_to_your_font.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            Font font = new Font(baseFont, 12);
+
+            // Add the title
+            Paragraph title = new Paragraph(infoPdfData.pdfName, font);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
 
             for (var infoImage : infoPdfData.imgs) {
-                // Add titre and description text
-                contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("titre: " + infoImage.titre);
-                contentStream.showText("\nDescription: " + infoImage.description);
-                contentStream.endText();
+                // Add title and description
+                Paragraph imageInfo = new Paragraph("Titre: " + infoImage.titre, font);
+                imageInfo.add(new Paragraph("Description: " + infoImage.description, font));
+                document.add(imageInfo);
 
                 // Add images
-                PDImageXObject image = PDImageXObject.createFromFile(infoImage.imgPath, document);
-                contentStream.drawImage(image, 50, 500, image.getWidth(), image.getHeight());
+                com.itextpdf.text.Image image = com.itextpdf.text.Image.getInstance(infoImage.imgPath);
+                document.add(image);
 
-                // Add a new page for the next set of info (optional)
-                contentStream.close();
-                page = new PDPage(PDRectangle.A4);
-                document.addPage(page);
-                contentStream = new PDPageContentStream(document, page);
+                // Start a new page (optional)
+                document.newPage();
             }
 
-            contentStream.close();
-            document.save(outputPath+ File.separator+ "pdf.pdf");
-            System.out.println(outputPath+ File.separator+ "pdf.pdf");
-            document.close();
-        } catch (IOException e) {
+        } catch (DocumentException | IOException e) {
             e.printStackTrace();
+        } finally {
+            document.close();
         }
     }
 }
