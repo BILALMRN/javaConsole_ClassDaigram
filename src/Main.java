@@ -14,7 +14,7 @@ public class Main{
     // private static Diagrams projectDiagrams = new Diagrams();
     private static Scanner input;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         int choice = 0;
         
