@@ -63,7 +63,7 @@ import Models.Enum.RelationType;
                 System.out.println("Do you want to add other Relationship to the diagram? (yes/no);.");
                 System.out.print(":> ");
                 addRelationship = scanner.nextLine();
-                if (!addClasses.equalsIgnoreCase("yes")) {
+                if (!addRelationship.equalsIgnoreCase("yes")) {
                     break;
                 }
             }
@@ -95,14 +95,17 @@ import Models.Enum.RelationType;
         System.out.println("Do you want to add Multiplicity to the Relationship? (yes/no)");
         System.out.println("Example:    ParentClass '1..2'  --relation--  '0..*' ChildClass");
         System.out.print(":> ");
-        String addMultiplicity = scanner.nextLine().toLowerCase();
+        scanner = new Scanner(System.in);
+        String addMultiplicity;
+        addMultiplicity = scanner.nextLine();
 
-        if (addMultiplicity.equals("yes")) {
+        if (addMultiplicity.toLowerCase().equals("yes")) {
             System.out.print("Enter the Multiplicity of ParentClass  the relationship: ");
             relationship.setParentMultiplicit(scanner.nextLine().toLowerCase());
             System.out.print("Enter the Multiplicity of ChildClass  the relationship: ");
             relationship.setChildMultiplicit(scanner.nextLine().toLowerCase());
         }
+
         return relationship;
     }
 
