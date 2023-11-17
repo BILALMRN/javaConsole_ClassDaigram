@@ -10,16 +10,17 @@ import Models.Enum.RelationType;
 
  class DataDiagram {
     
-    private Diagram diagram;
-    protected Scanner scanner = new Scanner(System.in);
+    private static Diagram diagram;
     private static String DefaultName= "1";
 
-    public DataDiagram() {
-        diagram = new Diagram();
+    private DataDiagram() {
+        
     }
     
-
-    public Diagram createDiagram() {
+    public static Diagram createDiagram() {
+        diagram = new Diagram();
+        Scanner scanner = new Scanner(System.in);
+        
         System.out.print("Enter the diagram name: ");
         String diagramsName = scanner.nextLine();
         diagram.setDiagramsName(diagramsName.isEmpty() ? DefaultName+=1 : diagramsName);
@@ -73,15 +74,24 @@ import Models.Enum.RelationType;
         return diagram;
     }
 
-    private void printAllNameClass(){
+
+
+    public static Diagram editDiagram(){
+        
+        return createDiagram();
+    }
+
+    //#region function use in createDiagram
+
+    private static void printAllNameClass(){
         System.out.println("List of all classes:");
         for (Classe classe : diagram.getListClass()) {
             System.out.println("#  " + classe.getClassName());
         }
     }
 
-    private Relationship createRelationship(){
-        
+    private static Relationship createRelationship(){
+        Scanner scanner = new Scanner(System.in);
         printAllNameClass();
         Relationship relationship = new Relationship();
         System.out.println("Example:    ParentClass --relation-- ChildClass");
@@ -105,11 +115,12 @@ import Models.Enum.RelationType;
             System.out.print("Enter the Multiplicity of ChildClass  the relationship: ");
             relationship.setChildMultiplicit(scanner.nextLine().toLowerCase());
         }
-
+        scanner.close();
         return relationship;
     }
 
-    private RelationType choiceRelationType(){
+    private static RelationType choiceRelationType(){
+        Scanner scanner = new Scanner(System.in);
         int choice;
         do{
         System.out.println("choose relationship type (NUM ):");
@@ -149,11 +160,12 @@ import Models.Enum.RelationType;
                 relationType = RelationType.INHERITANCE;
                 break;
         }
+        scanner.close();
         return relationType;
     }
 
-    private List<String> createAttributes(){
-
+    private static List<String> createAttributes(){
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter attributes exemple( Visibilite nom_de_Attribut :Type ). Enter 'done' when finished.");
         System.out.print(":> ");
         List <String> attributes = new ArrayList<>();
@@ -164,10 +176,12 @@ import Models.Enum.RelationType;
                 }
                 attributes.add(attribute);
             }
+        scanner.close();
         return attributes;
     }
 
-    private List<String> createMethods(){
+    private static List<String> createMethods(){
+        Scanner scanner = new Scanner(System.in);
        System.out.println("Enter methods exemple( Visibilite nom_de_Method():Type_de_retoun ). Enter 'done' when finished.");
         System.out.print(":> ");
         List <String> methods = new ArrayList<>();
@@ -178,11 +192,12 @@ import Models.Enum.RelationType;
                 }
                 methods.add(method);
             }
+        scanner.close();
         return methods;
     }
 
-    private Classe createClass() {
-        
+    private static Classe createClass() {
+        Scanner scanner = new Scanner(System.in);
         Classe classe = new Classe();
 
         System.out.print("Enter the class name: ");
@@ -205,7 +220,15 @@ import Models.Enum.RelationType;
         if (addMethods.equals("yes")) {
             classe.methods.addAll(createMethods());
         }
-
+        scanner.close();
         return classe;
     }
+
+    //#endregion
+
+    //#region function afiche
+
+
+    
+    //#endregion
 }
