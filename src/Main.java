@@ -12,7 +12,6 @@ import Views.Helper.FileHelper;
 public class Main{
     private static DiagramGenerator generate= new DiagramGenerator();
     // private static Diagrams projectDiagrams = new Diagrams();
-    private static Scanner input;
 
     public static void main(String[] args) {
 
@@ -27,7 +26,7 @@ public class Main{
             "4. exit \n");
 
             System.out.print(":> ");
-            input = new Scanner(System.in);
+            Scanner input = new Scanner(System.in);
             if (!input.hasNextInt()) choice = 0;
             else choice = input.nextInt();
             //input.close();
@@ -62,11 +61,7 @@ public class Main{
             
         }catch (Exception e){
             System.out.println(e.getMessage());
-        }finally{
-            input.close();
         }
-   
-        
     }
 
     private static void editProject() throws IOException{

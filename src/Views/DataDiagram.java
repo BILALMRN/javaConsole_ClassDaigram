@@ -76,10 +76,10 @@ import Models.Enum.RelationType;
 
 
 
-    public static Diagram editDiagram(){
+    // public static Diagram editDiagram(){
         
-        return createDiagram();
-    }
+    //     return createDiagram();
+    // }
 
     //#region function use in createDiagram
 
@@ -115,7 +115,6 @@ import Models.Enum.RelationType;
             System.out.print("Enter the Multiplicity of ChildClass  the relationship: ");
             relationship.setChildMultiplicit(scanner.nextLine().toLowerCase());
         }
-        scanner.close();
         return relationship;
     }
 
@@ -160,7 +159,6 @@ import Models.Enum.RelationType;
                 relationType = RelationType.INHERITANCE;
                 break;
         }
-        scanner.close();
         return relationType;
     }
 
@@ -176,7 +174,6 @@ import Models.Enum.RelationType;
                 }
                 attributes.add(attribute);
             }
-        scanner.close();
         return attributes;
     }
 
@@ -192,7 +189,6 @@ import Models.Enum.RelationType;
                 }
                 methods.add(method);
             }
-        scanner.close();
         return methods;
     }
 
@@ -220,7 +216,6 @@ import Models.Enum.RelationType;
         if (addMethods.equals("yes")) {
             classe.methods.addAll(createMethods());
         }
-        scanner.close();
         return classe;
     }
 

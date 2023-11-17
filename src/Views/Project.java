@@ -25,6 +25,7 @@ public class Project {
             //System.out.println("le project is null or empty ");
             throw new IllegalArgumentException("the project is null");
         }
+        Scanner input;
         int choice = 0;
         try {
                 do{
@@ -35,7 +36,7 @@ public class Project {
                 "4. Delete  all Diagrams \n" +
                 "5. done \n");
                 System.out.print(":> ");
-                Scanner input = new Scanner(System.in);
+                input = new Scanner(System.in);
                 if (!input.hasNextInt()) choice = 0;
                 else choice = input.nextInt();
                 //input.close();
@@ -46,22 +47,25 @@ public class Project {
                         }
                         break;
                     case 2 :
-                        {
-                            var DiagramList = project.getDiagramList();
-                            int index = selectDiagram(DiagramList);
-                            Diagram dataDiagram = DataDiagram.editDiagram();
-                            DiagramList.set(index, dataDiagram);
-                        }
+
+                            var DiagramList1 = project.getDiagramList();
+                            if (DiagramList1==null)break;
+                            int index = selectDiagram(DiagramList1);
+                            if(index >= 0) project.removeDaigram(DiagramList1.get(index));
+                            project.addDaigramIfNotExist(DataDiagram.createDiagram());
+                        
                         break;
                     case 3 :
-                        {
-                            var DiagramList = project.getDiagramList();
-                            int index = selectDiagram(DiagramList);
-                            DiagramList.remove(index);
-                        }
+
+                            List<Diagram> DiagramList = project.getDiagramList();
+                            if (DiagramList==null)break;
+                            int index3 = selectDiagram(DiagramList);
+                            if(index3 >= 0) project.removeDaigram(DiagramList.get(index3));
+                            
+                        
                         break;
                     case 4 :
-                        project.removeAllDaigram();
+                            project.removeAllDaigram();
                         break;
                     case 5 :
                         return project;
@@ -85,12 +89,12 @@ public class Project {
             for (Diagram diagram2 : DiagramList) {
                 System.out.println("        "+(++index)+" : "+diagram2.getDiagramsName());
             }
-            System.out.print(":> ");
-            Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
+        System.out.print(":> ");
             if (!input.hasNextInt()) return -1;
-            else choice = input.nextInt();
-            input.close();
-            if(choice < 0 && choice > DiagramList.size()) return -1;
+            else choice = input.nextInt() - 1 ;
+
+            if(choice < 0 || choice >= DiagramList.size()) return -1;
             return choice;
         
     }
