@@ -1,11 +1,13 @@
 package Views;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
+import Models.Diagram;
 import Models.Diagrams;
 
-public class DataProject extends DataDiagram{
+public class Project {
 
 
     public static Diagrams createProject() throws IOException{
@@ -30,7 +32,8 @@ public class DataProject extends DataDiagram{
                 "1. Add Diagram \n" +
                 "2. Edit Diagram \n" +
                 "3. Delete Diagram \n" +
-                "4. done \n");
+                "4. Delete  all Diagrams \n" +
+                "5. done \n");
                 System.out.print(":> ");
                 Scanner input = new Scanner(System.in);
                 if (!input.hasNextInt()) choice = 0;
@@ -39,24 +42,32 @@ public class DataProject extends DataDiagram{
                 switch(choice){
                     case 1 : 
                         {
-                        DataDiagram dataDiagram = new DataDiagram();
-                        project.addDaigramIfNotExist(dataDiagram.createDiagram());
-                        
+                            project.addDaigramIfNotExist(DataDiagram.createDiagram());
                         }
                         break;
                     case 2 :
-
+                        {
+                            var DiagramList = project.getDiagramList();
+                            int index = selectDiagram(DiagramList);
+                            Diagram dataDiagram = DataDiagram.editDiagram();
+                            DiagramList.set(index, dataDiagram);
+                        }
                         break;
                     case 3 :
-                        
+                        {
+                            var DiagramList = project.getDiagramList();
+                            int index = selectDiagram(DiagramList);
+                            DiagramList.remove(index);
+                        }
                         break;
                     case 4 :
+                        project.removeAllDaigram();
+                        break;
+                    case 5 :
                         return project;
                     default:
                         System.out.println("Wrong choice");
                         break;
-
-                    
                 }
 
                 }while(true);
@@ -64,9 +75,24 @@ public class DataProject extends DataDiagram{
                 System.out.println(e.getMessage());
             }
 
+
             return project;
     }
-
-
+    private static int selectDiagram(List<Diagram> DiagramList){
+        int index = 0;
+        int choice = 0;
+            System.out.println("Select diagram");
+            for (Diagram diagram2 : DiagramList) {
+                System.out.println("        "+(++index)+" : "+diagram2.getDiagramsName());
+            }
+            System.out.print(":> ");
+            Scanner input = new Scanner(System.in);
+            if (!input.hasNextInt()) return -1;
+            else choice = input.nextInt();
+            input.close();
+            if(choice < 0 && choice > DiagramList.size()) return -1;
+            return choice;
+        
+    }
 
 }

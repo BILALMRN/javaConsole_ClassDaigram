@@ -6,7 +6,7 @@ import Generator.DiagramGenerator;
 import Generator.PdfGenerator;
 import Generator.Helper.JsonHelper;
 import Models.Diagrams;
-import Views.DataProject;
+import Views.Project;
 import Views.Helper.FileHelper;
 
 public class Main{
@@ -97,7 +97,7 @@ public class Main{
             System.out.println(":) you must choose file path");
             return null;
         }
-        Diagrams newProject = DataProject.createProject() ;
+        Diagrams newProject = Project.createProject() ;
 
         newProject.setNameProject(nameProject);  
         path = path + File.separator +  nameProject; 
