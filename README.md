@@ -1,11 +1,32 @@
 # javaConsole_ClassDaigram
 
 
+## Installation the App
 
+1.  Prerequisites
 
+    Make sure you have the following installed on your system:
+
+       ` Java Development Kit (JDK)`
+
+1. Install the JAR file:
+
+    [App Class Daigram](https://github.com/BILALMRN/javaConsole_ClassDaigram/releases/download/v1.0.0/javaConsole_ClassDaigram.jar
+)
+
+1.  Execution
+
+    - Go to the `javaConsole_ClassDaigram.jar` in "Installation" directory 
+
+    - Execute the JAR file using the Java command:
+
+        ```bash
+        java -jar javaConsole_ClassDaigram.jar
+        ```
 
 ***
-### Graphviz (dot) not found
+### Graphviz (dot) not found 
+(error)
 
 > If you get an error saying that the dot executable file cannot be found, you can solve this problem by downloading the `Graphviz` executable file
 
