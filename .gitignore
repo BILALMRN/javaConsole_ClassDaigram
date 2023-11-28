@@ -1,3 +1,10 @@
+# idea file and folder
+*.xml
+*.iml
+out/
+.idea/
+*.json
+
 # Compiled class file
 *.class
 
