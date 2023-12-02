@@ -11,8 +11,7 @@
 
 1. Install the JAR file:
 
-    [App Class Daigram](https://github.com/BILALMRN/javaConsole_ClassDaigram/releases/download/v1.0.0/javaConsole_ClassDaigram.jar
-)
+    [App Class Daigram](https://github.com/BILALMRN/javaConsole_ClassDaigram/releases/download/v1.2.0/javaConsole_ClassDaigram.jar)
 
 1.  Execution
 
