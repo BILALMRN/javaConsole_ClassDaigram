@@ -23,12 +23,12 @@ public class PdfGenerator {
             PdfWriter.getInstance(document, new FileOutputStream(outputPath + File.separator + "pdf.pdf"));
             document.open();
 
-            // Create a font
+// Create a font
             Font fontMainTitle = FontFactory.getFont(FontFactory.HELVETICA, 36, Font.BOLD);
-            Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA, 14, Font.BOLD);//new Font(baseFont, 12);
+            Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA, 14, Font.BOLD);
             Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
-            
-            // Add the title
+
+// Add the title
             fontMainTitle.setColor(79, 129, 189);
             Paragraph title = new Paragraph(infoPdfData.pdfName, fontMainTitle);
             title.setAlignment(Element.ALIGN_CENTER);
@@ -38,22 +38,32 @@ public class PdfGenerator {
                 // Add title and description
                 Paragraph imageInfo = new Paragraph("\n\n\n\nTitre: " + infoImage.titre, fontTitle);
                 imageInfo.add(new Paragraph("\n\nDescription:"));
-                imageInfo.add(new Paragraph(  "            " + infoImage.description+"\n\n", fontParagraph));
+                imageInfo.add(new Paragraph("            " + infoImage.description + "\n\n", fontParagraph));
                 document.add(imageInfo);
 
                 // Add images
                 Image image = Image.getInstance(infoImage.imgPath);
+
+                // Set image width to 80% of the page width
+                float pageWidth = document.getPageSize().getWidth();
+                float targetWidth = pageWidth * 0.8f;
+                float scaleFactor = targetWidth / image.getWidth();
+
+                image.scaleToFit(targetWidth, image.getHeight() * scaleFactor);
+
                 image.setAlignment(Element.ALIGN_CENTER);
                 document.add(image);
 
                 // Start a new page (optional)
                 document.newPage();
-            }
+
+
+        }
 
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         } finally {
-            document.close();
+        document.close();
         }
     }
 }

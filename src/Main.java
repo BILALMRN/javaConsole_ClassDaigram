@@ -73,7 +73,9 @@ public class Main{
         if(project==null) return;
         var t = path.lastIndexOf(File.separator + project.getNameProject()+ ".json");
         String pathProject = path.substring(0,t);
+        Project.editProject(project);
         generate.generateDiagrams(pathProject,project);
+
     }
 
     private static void disaplayHeaderChoocePath(){
